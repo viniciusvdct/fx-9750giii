@@ -1,0 +1,5 @@
+# Gerados por 12_Desenvolvimento/micropython-1.9.4/compilar.sh
+12_Desenvolvimento/micropython-1.9.4/bin/
+12_Desenvolvimento/micropython-1.9.4/_fonte-micropython-1.9.4/
+__pycache__/
+*.pbm

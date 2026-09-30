@@ -1,0 +1,5102 @@
+{
+ "cpython": "3.11.15",
+ "contagem": {
+  "igual": 136,
+  "nucleo": 113,
+  "config": 19
+ },
+ "sondas": [
+  {
+   "id": "S01",
+   "categoria": "sintaxe",
+   "recurso": "f-string (PEP 498, Python 3.6)",
+   "codigo": "r = f\"{1+1}\"",
+   "cpython": [
+    "OK",
+    "'2'"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S02",
+   "categoria": "sintaxe",
+   "recurso": "operador morsa := (3.8)",
+   "codigo": "r = [(y := 5), y]",
+   "cpython": [
+    "OK",
+    "[5, 5]"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S03",
+   "categoria": "sintaxe",
+   "recurso": "parametro so-posicional / (3.8)",
+   "codigo": "def f(a, /, b):\n    return a + b\nr = f(1, 2)",
+   "cpython": [
+    "OK",
+    "3"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S04",
+   "categoria": "sintaxe",
+   "recurso": "anotacao de funcao (3.0)",
+   "codigo": "def f(x: int) -> int:\n    return x * 2\nr = f(3)",
+   "cpython": [
+    "OK",
+    "6"
+   ],
+   "teto": [
+    "OK",
+    "6"
+   ],
+   "piso": [
+    "OK",
+    "6"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S05",
+   "categoria": "sintaxe",
+   "recurso": "anotacao de variavel x: int = 5 (3.6)",
+   "codigo": "x: int = 5\nr = x",
+   "cpython": [
+    "OK",
+    "5"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S06",
+   "categoria": "sintaxe",
+   "recurso": "separador _ em numeros 1_000 (3.6)",
+   "codigo": "r = 1_000_000",
+   "cpython": [
+    "OK",
+    "1000000"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S07",
+   "categoria": "sintaxe",
+   "recurso": "async def / await (3.5)",
+   "codigo": "async def f():\n    return 1\nr = 'compilou'",
+   "cpython": [
+    "OK",
+    "'compilou'"
+   ],
+   "teto": [
+    "OK",
+    "'compilou'"
+   ],
+   "piso": [
+    "OK",
+    "'compilou'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S08",
+   "categoria": "sintaxe",
+   "recurso": "nonlocal",
+   "codigo": "def contador():\n    n = 0\n    def inc():\n        nonlocal n\n        n += 1\n        return n\n    return inc\nc = contador(); c()\nr = c()",
+   "cpython": [
+    "OK",
+    "2"
+   ],
+   "teto": [
+    "OK",
+    "2"
+   ],
+   "piso": [
+    "OK",
+    "2"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S09",
+   "categoria": "sintaxe",
+   "recurso": "yield from",
+   "codigo": "def g():\n    yield from range(3)\nr = list(g())",
+   "cpython": [
+    "OK",
+    "[0, 1, 2]"
+   ],
+   "teto": [
+    "OK",
+    "[0, 1, 2]"
+   ],
+   "piso": [
+    "OK",
+    "[0, 1, 2]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S10",
+   "categoria": "sintaxe",
+   "recurso": "argumento so-nomeado (*, b)",
+   "codigo": "def f(a, *, b=2):\n    return a + b\nr = f(1, b=5)",
+   "cpython": [
+    "OK",
+    "6"
+   ],
+   "teto": [
+    "OK",
+    "6"
+   ],
+   "piso": [
+    "OK",
+    "6"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S11",
+   "categoria": "sintaxe",
+   "recurso": "desempacotamento estendido a, *b, c",
+   "codigo": "a, *b, c = [1, 2, 3, 4, 5]\nr = (a, b, c)",
+   "cpython": [
+    "OK",
+    "(1, [2, 3, 4], 5)"
+   ],
+   "teto": [
+    "OK",
+    "(1, [2, 3, 4], 5)"
+   ],
+   "piso": [
+    "OK",
+    "(1, [2, 3, 4], 5)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S12",
+   "categoria": "sintaxe",
+   "recurso": "PEP 448: [*a, *b]",
+   "codigo": "r = [*[1], *[2, 3]]",
+   "cpython": [
+    "OK",
+    "[1, 2, 3]"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: *x must be assignment target"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: *x must be assignment target"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S13",
+   "categoria": "sintaxe",
+   "recurso": "PEP 448: {**d1, **d2}",
+   "codigo": "r = sorted({**{'a': 1}, **{'b': 2}}.items())",
+   "cpython": [
+    "OK",
+    "[('a', 1), ('b', 2)]"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S14",
+   "categoria": "sintaxe",
+   "recurso": "PEP 448: f(*a, *b)",
+   "codigo": "def f(*a):\n    return a\nr = f(*[1], *[2])",
+   "cpython": [
+    "OK",
+    "(1, 2)"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: can't have multiple *x"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: can't have multiple *x"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S15",
+   "categoria": "sintaxe",
+   "recurso": "operador @ (__matmul__, 3.5)",
+   "codigo": "class M:\n    def __matmul__(self, o):\n        return 42\nr = M() @ M()",
+   "cpython": [
+    "OK",
+    "42"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S16",
+   "categoria": "sintaxe",
+   "recurso": "compreensao de conjunto",
+   "codigo": "r = sorted({x % 3 for x in range(10)})",
+   "cpython": [
+    "OK",
+    "[0, 1, 2]"
+   ],
+   "teto": [
+    "OK",
+    "[0, 1, 2]"
+   ],
+   "piso": [
+    "OK",
+    "[0, 1, 2]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S17",
+   "categoria": "sintaxe",
+   "recurso": "compreensao de dicionario",
+   "codigo": "r = sorted({x: x * x for x in range(3)}.items())",
+   "cpython": [
+    "OK",
+    "[(0, 0), (1, 1), (2, 4)]"
+   ],
+   "teto": [
+    "OK",
+    "[(0, 0), (1, 1), (2, 4)]"
+   ],
+   "piso": [
+    "OK",
+    "[(0, 0), (1, 1), (2, 4)]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S18",
+   "categoria": "sintaxe",
+   "recurso": "expressao condicional em lambda",
+   "codigo": "f = lambda x: 'par' if x % 2 == 0 else 'impar'\nr = f(3)",
+   "cpython": [
+    "OK",
+    "'impar'"
+   ],
+   "teto": [
+    "OK",
+    "'impar'"
+   ],
+   "piso": [
+    "OK",
+    "'impar'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S19",
+   "categoria": "sintaxe",
+   "recurso": "comparacao encadeada 1 < 2 < 3",
+   "codigo": "r = 1 < 2 < 3",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "OK",
+    "True"
+   ],
+   "piso": [
+    "OK",
+    "True"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S20",
+   "categoria": "sintaxe",
+   "recurso": "raise ... from ... (encadeamento)",
+   "codigo": "try:\n    try:\n        1 / 0\n    except ZeroDivisionError as e:\n        raise ValueError('x') from e\nexcept ValueError as e2:\n    r = (type(e2).__name__, getattr(e2, '__cause__', 'sem __cause__'))",
+   "cpython": [
+    "OK",
+    "('ValueError', ZeroDivisionError('division by zero'))"
+   ],
+   "teto": [
+    "OK",
+    "('ValueError', 'sem __cause__')"
+   ],
+   "piso": [
+    "OK",
+    "('ValueError', 'sem __cause__')"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S21",
+   "categoria": "sintaxe",
+   "recurso": "with + gerenciador de contexto proprio",
+   "codigo": "log = []\nclass CM:\n    def __enter__(self):\n        log.append('in'); return self\n    def __exit__(self, *a):\n        log.append('out'); return False\nwith CM() as c:\n    log.append('corpo')\nr = log",
+   "cpython": [
+    "OK",
+    "['in', 'corpo', 'out']"
+   ],
+   "teto": [
+    "OK",
+    "['in', 'corpo', 'out']"
+   ],
+   "piso": [
+    "OK",
+    "['in', 'corpo', 'out']"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S22",
+   "categoria": "sintaxe",
+   "recurso": "decorador de funcao e de classe",
+   "codigo": "def dec(f):\n    return lambda *a: f(*a) * 10\n@dec\ndef g(x):\n    return x\ndef cdec(c):\n    c.marca = 1\n    return c\n@cdec\nclass K:\n    pass\nr = (g(2), K.marca)",
+   "cpython": [
+    "OK",
+    "(20, 1)"
+   ],
+   "teto": [
+    "OK",
+    "(20, 1)"
+   ],
+   "piso": [
+    "OK",
+    "(20, 1)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S23",
+   "categoria": "sintaxe",
+   "recurso": "match/case (3.10)",
+   "codigo": "match 1:\n    case 1:\n        r = 'um'",
+   "cpython": [
+    "OK",
+    "'um'"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S24",
+   "categoria": "sintaxe",
+   "recurso": "literais 0b 0o 0x",
+   "codigo": "r = (0b101, 0o17, 0x1f)",
+   "cpython": [
+    "OK",
+    "(5, 15, 31)"
+   ],
+   "teto": [
+    "OK",
+    "(5, 15, 31)"
+   ],
+   "piso": [
+    "OK",
+    "(5, 15, 31)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S25",
+   "categoria": "sintaxe",
+   "recurso": "literal complexo 1j",
+   "codigo": "r = (1 + 2j) * (3 - 1j)",
+   "cpython": [
+    "OK",
+    "(5+5j)"
+   ],
+   "teto": [
+    "OK",
+    "(5+5j)"
+   ],
+   "piso": [
+    "OK",
+    "(5+5j)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S26",
+   "categoria": "sintaxe",
+   "recurso": "prefixos r b u rb",
+   "codigo": "r = (r'\\n', b'ab', u'x', rb'\\d')",
+   "cpython": [
+    "OK",
+    "('\\\\n', b'ab', 'x', b'\\\\d')"
+   ],
+   "teto": [
+    "OK",
+    "('\\\\n', b'ab', 'x', b'\\\\d')"
+   ],
+   "piso": [
+    "OK",
+    "('\\\\n', b'ab', 'x', b'\\\\d')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S27",
+   "categoria": "sintaxe",
+   "recurso": "escape \\N{nome unicode}",
+   "codigo": "r = '\\N{GREEK SMALL LETTER ALPHA}'",
+   "cpython": [
+    "OK",
+    "'α'"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: unicode name escapes"
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: unicode name escapes"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S28",
+   "categoria": "sintaxe",
+   "recurso": "return *a, 3 (3.8)",
+   "codigo": "def f():\n    a = [1, 2]\n    return *a, 3\nr = f()",
+   "cpython": [
+    "OK",
+    "(1, 2, 3)"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S29",
+   "categoria": "sintaxe",
+   "recurso": "for ... else / while ... else",
+   "codigo": "for i in range(3):\n    pass\nelse:\n    a = 'for-else'\nn = 0\nwhile n < 2:\n    n += 1\nelse:\n    b = 'while-else'\nr = (a, b)",
+   "cpython": [
+    "OK",
+    "('for-else', 'while-else')"
+   ],
+   "teto": [
+    "OK",
+    "('for-else', 'while-else')"
+   ],
+   "piso": [
+    "OK",
+    "('for-else', 'while-else')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S30",
+   "categoria": "sintaxe",
+   "recurso": "docstring acessivel em __doc__",
+   "codigo": "def f():\n    \"documentacao\"\n    return 1\nr = f.__doc__",
+   "cpython": [
+    "OK",
+    "'documentacao'"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'function' object has no attribute '__doc__'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'function' object has no attribute '__doc__'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S31",
+   "categoria": "sintaxe",
+   "recurso": "identificador nao ASCII",
+   "codigo": "é = 1\nr = é",
+   "cpython": [
+    "OK",
+    "1"
+   ],
+   "teto": [
+    "OK",
+    "1"
+   ],
+   "piso": [
+    "OK",
+    "1"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S32",
+   "categoria": "sintaxe",
+   "recurso": "metaclass=",
+   "codigo": "class M(type):\n    pass\nclass A(metaclass=M):\n    pass\nr = type(A).__name__",
+   "cpython": [
+    "OK",
+    "'M'"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: function does not take keyword arguments"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: function does not take keyword arguments"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "S33",
+   "categoria": "sintaxe",
+   "recurso": "global dentro de funcao",
+   "codigo": "g = 1\ndef f():\n    global g\n    g = 2\nf()\nr = g",
+   "cpython": [
+    "OK",
+    "2"
+   ],
+   "teto": [
+    "OK",
+    "2"
+   ],
+   "piso": [
+    "OK",
+    "2"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S34",
+   "categoria": "sintaxe",
+   "recurso": "Ellipsis ...",
+   "codigo": "r = ...",
+   "cpython": [
+    "OK",
+    "Ellipsis"
+   ],
+   "teto": [
+    "OK",
+    "Ellipsis"
+   ],
+   "piso": [
+    "OK",
+    "Ellipsis"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "S35",
+   "categoria": "sintaxe",
+   "recurso": "type hints com default",
+   "codigo": "def f(a: int = 3) -> int:\n    return a\nr = f()",
+   "cpython": [
+    "OK",
+    "3"
+   ],
+   "teto": [
+    "OK",
+    "3"
+   ],
+   "piso": [
+    "OK",
+    "3"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N01",
+   "categoria": "numeros",
+   "recurso": "0.1 + 0.2 == 0.3",
+   "codigo": "r = 0.1 + 0.2 == 0.3",
+   "cpython": [
+    "OK",
+    "False"
+   ],
+   "teto": [
+    "OK",
+    "True"
+   ],
+   "piso": [
+    "OK",
+    "True"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N02",
+   "categoria": "numeros",
+   "recurso": "repr(0.1 + 0.2)",
+   "codigo": "r = 0.1 + 0.2",
+   "cpython": [
+    "OK",
+    "0.30000000000000004"
+   ],
+   "teto": [
+    "OK",
+    "0.3"
+   ],
+   "piso": [
+    "OK",
+    "0.3"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N03",
+   "categoria": "numeros",
+   "recurso": "str(0.1 + 0.2)",
+   "codigo": "r = str(0.1 + 0.2)",
+   "cpython": [
+    "OK",
+    "'0.30000000000000004'"
+   ],
+   "teto": [
+    "OK",
+    "'0.3'"
+   ],
+   "piso": [
+    "OK",
+    "'0.3'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N04",
+   "categoria": "numeros",
+   "recurso": "2 ** 0.5",
+   "codigo": "r = 2 ** 0.5",
+   "cpython": [
+    "OK",
+    "1.4142135623730951"
+   ],
+   "teto": [
+    "OK",
+    "1.414213562373095"
+   ],
+   "piso": [
+    "OK",
+    "1.414213562373095"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N05",
+   "categoria": "numeros",
+   "recurso": "1 / 3 e 2 / 3",
+   "codigo": "r = (1 / 3, 2 / 3)",
+   "cpython": [
+    "OK",
+    "(0.3333333333333333, 0.6666666666666666)"
+   ],
+   "teto": [
+    "OK",
+    "(0.3333333333333333, 0.6666666666666666)"
+   ],
+   "piso": [
+    "OK",
+    "(0.3333333333333333, 0.6666666666666666)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N06",
+   "categoria": "numeros",
+   "recurso": "sum([0.1] * 10)",
+   "codigo": "r = sum([0.1] * 10)",
+   "cpython": [
+    "OK",
+    "0.9999999999999999"
+   ],
+   "teto": [
+    "OK",
+    "1.0"
+   ],
+   "piso": [
+    "OK",
+    "1.0"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N07",
+   "categoria": "numeros",
+   "recurso": "str() de floats variados",
+   "codigo": "r = [str(x) for x in (1e16, 1e15, 123456789.123456789, 100.0, -0.0, 1e22, 12345678.9, 1e-5, 0.0001, 1e100)]",
+   "cpython": [
+    "OK",
+    "['1e+16', '1000000000000000.0', '123456789.12345679', '100.0', '-0.0', '1e+22', '12345678.9', '1e-05', '0.0001', '1e+100']"
+   ],
+   "teto": [
+    "OK",
+    "['1e+16', '1000000000000000.0', '123456789.1234568', '100.0', '-0.0', '1e+22', '12345678.9', '1e-05', '0.0001', '1e+100']"
+   ],
+   "piso": [
+    "OK",
+    "['1e+16', '1000000000000000.0', '123456789.1234568', '100.0', '-0.0', '1e+22', '12345678.9', '1e-05', '0.0001', '1e+100']"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N08",
+   "categoria": "numeros",
+   "recurso": "transbordo 1e308 * 10",
+   "codigo": "r = (1e308 * 10, -1e308 * 10)",
+   "cpython": [
+    "OK",
+    "(inf, -inf)"
+   ],
+   "teto": [
+    "OK",
+    "(inf, -inf)"
+   ],
+   "piso": [
+    "OK",
+    "(inf, -inf)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N09",
+   "categoria": "numeros",
+   "recurso": "subnormais 5e-324 e 1e-324",
+   "codigo": "r = (5e-324, 1e-324, 5e-324 / 2)",
+   "cpython": [
+    "OK",
+    "(5e-324, 0.0, 0.0)"
+   ],
+   "teto": [
+    "OK",
+    "(4.940656458412466e-324, 0.0, 0.0)"
+   ],
+   "piso": [
+    "OK",
+    "(4.940656458412466e-324, 0.0, 0.0)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N10",
+   "categoria": "numeros",
+   "recurso": "inteiros grandes 2 ** 100",
+   "codigo": "r = 2 ** 100",
+   "cpython": [
+    "OK",
+    "1267650600228229401496703205376"
+   ],
+   "teto": [
+    "OK",
+    "1267650600228229401496703205376"
+   ],
+   "piso": [
+    "OK",
+    "1267650600228229401496703205376"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N11",
+   "categoria": "numeros",
+   "recurso": "(2**64 + 1) - 2**64",
+   "codigo": "r = (2 ** 64 + 1) - 2 ** 64",
+   "cpython": [
+    "OK",
+    "1"
+   ],
+   "teto": [
+    "OK",
+    "1"
+   ],
+   "piso": [
+    "OK",
+    "1"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N12",
+   "categoria": "numeros",
+   "recurso": "divisao / // % com negativos",
+   "codigo": "r = (7 / 2, 7 // 2, -7 // 2, 7 % 3, -7 % 3, 7 % -3, 7.5 // 2, divmod(-7, 2))",
+   "cpython": [
+    "OK",
+    "(3.5, 3, -4, 1, 2, -2, 3.0, (-4, 1))"
+   ],
+   "teto": [
+    "OK",
+    "(3.5, 3, -4, 1, 2, -2, 3.0, (-4, 1))"
+   ],
+   "piso": [
+    "OK",
+    "(3.5, 3, -4, 1, 2, -2, 3.0, (-4, 1))"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N13",
+   "categoria": "numeros",
+   "recurso": "1 / 0",
+   "codigo": "r = 1 / 0",
+   "cpython": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "teto": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "piso": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N14",
+   "categoria": "numeros",
+   "recurso": "1.0 / 0",
+   "codigo": "r = 1.0 / 0",
+   "cpython": [
+    "ERRO",
+    "ZeroDivisionError: float division by zero"
+   ],
+   "teto": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "piso": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N15",
+   "categoria": "numeros",
+   "recurso": "1 % 0",
+   "codigo": "r = 1 % 0",
+   "cpython": [
+    "ERRO",
+    "ZeroDivisionError: integer modulo by zero"
+   ],
+   "teto": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "piso": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N16",
+   "categoria": "numeros",
+   "recurso": "0 ** 0, 0.0 ** 0",
+   "codigo": "r = (0 ** 0, 0.0 ** 0)",
+   "cpython": [
+    "OK",
+    "(1, 1.0)"
+   ],
+   "teto": [
+    "OK",
+    "(1, 1.0)"
+   ],
+   "piso": [
+    "OK",
+    "(1, 1.0)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N17",
+   "categoria": "numeros",
+   "recurso": "0 ** -1",
+   "codigo": "r = 0 ** -1",
+   "cpython": [
+    "ERRO",
+    "ZeroDivisionError: 0.0 cannot be raised to a negative power"
+   ],
+   "teto": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "piso": [
+    "ERRO",
+    "ZeroDivisionError: division by zero"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N18",
+   "categoria": "numeros",
+   "recurso": "2.0 ** 10000",
+   "codigo": "r = 2.0 ** 10000",
+   "cpython": [
+    "ERRO",
+    "OverflowError: (34, 'Numerical result out of range')"
+   ],
+   "teto": [
+    "OK",
+    "inf"
+   ],
+   "piso": [
+    "OK",
+    "inf"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N19",
+   "categoria": "numeros",
+   "recurso": "float(10 ** 400)",
+   "codigo": "r = float(10 ** 400)",
+   "cpython": [
+    "ERRO",
+    "OverflowError: int too large to convert to float"
+   ],
+   "teto": [
+    "OK",
+    "inf"
+   ],
+   "piso": [
+    "OK",
+    "inf"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N20",
+   "categoria": "numeros",
+   "recurso": "int(1e300) exato",
+   "codigo": "r = int(1e300) == 10 ** 300",
+   "cpython": [
+    "OK",
+    "False"
+   ],
+   "teto": [
+    "OK",
+    "False"
+   ],
+   "piso": [
+    "OK",
+    "False"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N21",
+   "categoria": "numeros",
+   "recurso": "int(float(\"inf\"))",
+   "codigo": "r = int(float('inf'))",
+   "cpython": [
+    "ERRO",
+    "OverflowError: cannot convert float infinity to integer"
+   ],
+   "teto": [
+    "ERRO",
+    "OverflowError: can't convert inf to int"
+   ],
+   "piso": [
+    "ERRO",
+    "OverflowError: can't convert inf to int"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N22",
+   "categoria": "numeros",
+   "recurso": "int(float(\"nan\"))",
+   "codigo": "r = int(float('nan'))",
+   "cpython": [
+    "ERRO",
+    "ValueError: cannot convert float NaN to integer"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: can't convert NaN to int"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: can't convert NaN to int"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N23",
+   "categoria": "numeros",
+   "recurso": "round(): meio-a-par e casas",
+   "codigo": "r = (round(2.5), round(3.5), round(-0.5), round(0.5), round(2.675, 2), round(1234, -2), round(1.5))",
+   "cpython": [
+    "OK",
+    "(2, 4, 0, 0, 2.67, 1200, 2)"
+   ],
+   "teto": [
+    "OK",
+    "(2, 4, 0, 0, 2.68, 1234, 2)"
+   ],
+   "piso": [
+    "OK",
+    "(2, 4, 0, 0, 2.68, 1234, 2)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N24",
+   "categoria": "numeros",
+   "recurso": "round(x) devolve int",
+   "codigo": "r = type(round(2.7)).__name__",
+   "cpython": [
+    "OK",
+    "'int'"
+   ],
+   "teto": [
+    "OK",
+    "'int'"
+   ],
+   "piso": [
+    "OK",
+    "'int'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N25",
+   "categoria": "numeros",
+   "recurso": "int() de textos",
+   "codigo": "r = (int('12'), int(' 12 '), int('ff', 16), int('0x1f', 16), int('0b101', 0), int(3.99), int(-3.99))",
+   "cpython": [
+    "OK",
+    "(12, 12, 255, 31, 5, 3, -3)"
+   ],
+   "teto": [
+    "OK",
+    "(12, 12, 255, 31, 5, 3, -3)"
+   ],
+   "piso": [
+    "OK",
+    "(12, 12, 255, 31, 5, 3, -3)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N26",
+   "categoria": "numeros",
+   "recurso": "int(\"1_0\")",
+   "codigo": "r = int('1_0')",
+   "cpython": [
+    "OK",
+    "10"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: invalid syntax for integer with base 10: '1_0'"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: invalid syntax for integer with base 10"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "N27",
+   "categoria": "numeros",
+   "recurso": "int(\"3.5\")",
+   "codigo": "r = int('3.5')",
+   "cpython": [
+    "ERRO",
+    "ValueError: invalid literal for int() with base 10: '3.5'"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: invalid syntax for integer with base 10: '3.5'"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: invalid syntax for integer with base 10"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "N28",
+   "categoria": "numeros",
+   "recurso": "float() de textos",
+   "codigo": "r = (float(' 2.5 '), float('1e3'), float('inf'), float('-inf'), float('-0'))",
+   "cpython": [
+    "OK",
+    "(2.5, 1000.0, inf, -inf, -0.0)"
+   ],
+   "teto": [
+    "OK",
+    "(2.5, 1000.0, inf, -inf, -0.0)"
+   ],
+   "piso": [
+    "OK",
+    "(2.5, 1000.0, inf, -inf, -0.0)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N29",
+   "categoria": "numeros",
+   "recurso": "float(\"nan\") != float(\"nan\")",
+   "codigo": "n = float('nan'); r = (n != n, str(n))",
+   "cpython": [
+    "OK",
+    "(True, 'nan')"
+   ],
+   "teto": [
+    "OK",
+    "(True, 'nan')"
+   ],
+   "piso": [
+    "OK",
+    "(True, 'nan')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N30",
+   "categoria": "numeros",
+   "recurso": "pow() 3 argumentos e negativos",
+   "codigo": "r = (pow(2, 10, 1000), pow(2, -1), pow(3, 200, 7))",
+   "cpython": [
+    "OK",
+    "(24, 0.5, 2)"
+   ],
+   "teto": [
+    "OK",
+    "(24, 0.5, 2)"
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: 3-arg pow() not supported"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "N31",
+   "categoria": "numeros",
+   "recurso": "(-8) ** (1/3)",
+   "codigo": "r = (-8) ** (1 / 3)",
+   "cpython": [
+    "OK",
+    "(1.0000000000000002+1.7320508075688772j)"
+   ],
+   "teto": [
+    "OK",
+    "(1+1.732050807568877j)"
+   ],
+   "piso": [
+    "OK",
+    "(1+1.732050807568877j)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N32",
+   "categoria": "numeros",
+   "recurso": "(-1) ** 0.5",
+   "codigo": "r = (-1) ** 0.5",
+   "cpython": [
+    "OK",
+    "(6.123233995736766e-17+1j)"
+   ],
+   "teto": [
+    "OK",
+    "(6.123233995736767e-17+1j)"
+   ],
+   "piso": [
+    "OK",
+    "(6.123233995736767e-17+1j)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N33",
+   "categoria": "numeros",
+   "recurso": "abs() de float e complexo",
+   "codigo": "r = (abs(-3.5), abs(3 + 4j))",
+   "cpython": [
+    "OK",
+    "(3.5, 5.0)"
+   ],
+   "teto": [
+    "OK",
+    "(3.5, 5.0)"
+   ],
+   "piso": [
+    "OK",
+    "(3.5, 5.0)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N34",
+   "categoria": "numeros",
+   "recurso": "complexos: atributos e metodos",
+   "codigo": "z = 3 + 4j; r = (z.real, z.imag, z.conjugate(), 1j ** 2, complex(1, 2))",
+   "cpython": [
+    "OK",
+    "(3.0, 4.0, (3-4j), (-1+0j), (1+2j))"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'complex' object has no attribute 'conjugate'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'complex' object has no attribute 'conjugate'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N35",
+   "categoria": "numeros",
+   "recurso": "complex(\"1+2j\")",
+   "codigo": "r = complex('1+2j')",
+   "cpython": [
+    "OK",
+    "(1+2j)"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: invalid syntax for number"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: invalid syntax for number"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N36",
+   "categoria": "numeros",
+   "recurso": "int.to_bytes / from_bytes",
+   "codigo": "r = ((255).to_bytes(2, 'big'), int.from_bytes(b'\\x01\\x00', 'big'))",
+   "cpython": [
+    "OK",
+    "(b'\\x00\\xff', 256)"
+   ],
+   "teto": [
+    "OK",
+    "(b'\\x00\\xff', 256)"
+   ],
+   "piso": [
+    "OK",
+    "(b'\\x00\\xff', 256)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N37",
+   "categoria": "numeros",
+   "recurso": "int.bit_length()",
+   "codigo": "r = (5).bit_length()",
+   "cpython": [
+    "OK",
+    "3"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'int' object has no attribute 'bit_length'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'int' object has no attribute 'bit_length'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N38",
+   "categoria": "numeros",
+   "recurso": "float.is_integer()",
+   "codigo": "r = (3.0).is_integer()",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'float' object has no attribute 'is_integer'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'float' object has no attribute 'is_integer'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N39",
+   "categoria": "numeros",
+   "recurso": "float.as_integer_ratio()",
+   "codigo": "r = (0.5).as_integer_ratio()",
+   "cpython": [
+    "OK",
+    "(1, 2)"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'float' object has no attribute 'as_integer_ratio'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'float' object has no attribute 'as_integer_ratio'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N40",
+   "categoria": "numeros",
+   "recurso": "float.hex() / fromhex",
+   "codigo": "r = (1.0).hex()",
+   "cpython": [
+    "OK",
+    "'0x1.0000000000000p+0'"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'float' object has no attribute 'hex'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'float' object has no attribute 'hex'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N41",
+   "categoria": "numeros",
+   "recurso": "True + True, bool e int",
+   "codigo": "r = (True + True, isinstance(True, int))",
+   "cpython": [
+    "OK",
+    "(2, True)"
+   ],
+   "teto": [
+    "OK",
+    "(2, False)"
+   ],
+   "piso": [
+    "OK",
+    "(2, False)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N42",
+   "categoria": "numeros",
+   "recurso": "2**53 + 1 vs float",
+   "codigo": "r = (2 ** 53 + 1 == float(2 ** 53 + 1), float(2 ** 53 + 1))",
+   "cpython": [
+    "OK",
+    "(False, 9007199254740992.0)"
+   ],
+   "teto": [
+    "OK",
+    "(True, 9007199254740993.0)"
+   ],
+   "piso": [
+    "OK",
+    "(True, 9007199254740993.0)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N43",
+   "categoria": "numeros",
+   "recurso": "1e16 + 1 e 1e16 + 2",
+   "codigo": "r = (1e16 + 1, 1e16 + 2)",
+   "cpython": [
+    "OK",
+    "(1e+16, 1.0000000000000002e+16)"
+   ],
+   "teto": [
+    "OK",
+    "(1e+16, 1e+16)"
+   ],
+   "piso": [
+    "OK",
+    "(1e+16, 1e+16)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N44",
+   "categoria": "numeros",
+   "recurso": "int(0.1 * 3 * 10)",
+   "codigo": "r = int(0.1 * 3 * 10)",
+   "cpython": [
+    "OK",
+    "3"
+   ],
+   "teto": [
+    "OK",
+    "3"
+   ],
+   "piso": [
+    "OK",
+    "3"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N45",
+   "categoria": "numeros",
+   "recurso": "hash(1.5), hash(-1)",
+   "codigo": "r = (type(hash(1.5)).__name__, hash(-1))",
+   "cpython": [
+    "OK",
+    "('int', -2)"
+   ],
+   "teto": [
+    "OK",
+    "('int', -1)"
+   ],
+   "piso": [
+    "OK",
+    "('int', -1)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N46",
+   "categoria": "numeros",
+   "recurso": "comparacao int grande x float",
+   "codigo": "r = (10 ** 20 == 1e20, 10 ** 30 < 1e31)",
+   "cpython": [
+    "OK",
+    "(True, True)"
+   ],
+   "teto": [
+    "OK",
+    "(True, True)"
+   ],
+   "piso": [
+    "OK",
+    "(True, True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "N47",
+   "categoria": "numeros",
+   "recurso": "len(range(10**10))",
+   "codigo": "r = len(range(10 ** 10))",
+   "cpython": [
+    "OK",
+    "10000000000"
+   ],
+   "teto": [
+    "ERRO",
+    "OverflowError: overflow converting long int to machine word"
+   ],
+   "piso": [
+    "ERRO",
+    "OverflowError: overflow converting long int to machine word"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "N48",
+   "categoria": "numeros",
+   "recurso": "divmod(7.5, 2), 7.5 % 2",
+   "codigo": "r = (divmod(7.5, 2), 7.5 % 2, -7.5 % 2)",
+   "cpython": [
+    "OK",
+    "((3.0, 1.5), 1.5, 0.5)"
+   ],
+   "teto": [
+    "OK",
+    "((3.0, 1.5), 1.5, 0.5)"
+   ],
+   "piso": [
+    "OK",
+    "((3.0, 1.5), 1.5, 0.5)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M01",
+   "categoria": "math",
+   "recurso": "math.floor/ceil/trunc devolvem int",
+   "codigo": "import math\nr = (math.floor(2.5), type(math.floor(2.5)).__name__, math.ceil(-2.5), math.trunc(-2.7))",
+   "cpython": [
+    "OK",
+    "(2, 'int', -2, -2)"
+   ],
+   "teto": [
+    "OK",
+    "(2, 'int', -2, -2)"
+   ],
+   "piso": [
+    "OK",
+    "(2, 'int', -2, -2)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M02",
+   "categoria": "math",
+   "recurso": "math.sqrt, pow, exp, e, pi",
+   "codigo": "import math\nr = (math.sqrt(2), math.pow(2, 0.5), math.exp(1), math.e, math.pi)",
+   "cpython": [
+    "OK",
+    "(1.4142135623730951, 1.4142135623730951, 2.718281828459045, 2.718281828459045, 3.141592653589793)"
+   ],
+   "teto": [
+    "OK",
+    "(1.414213562373095, 1.414213562373095, 2.718281828459045, 2.718281828459045, 3.141592653589793)"
+   ],
+   "piso": [
+    "OK",
+    "(1.414213562373095, 1.414213562373095, 2.718281828459045, 2.718281828459045, 3.141592653589793)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M03",
+   "categoria": "math",
+   "recurso": "math.log(x) e math.log(x, base)",
+   "codigo": "import math\nr = (math.log(math.e), math.log(8, 2), math.log(100, 10))",
+   "cpython": [
+    "OK",
+    "(1.0, 3.0, 2.0)"
+   ],
+   "teto": [
+    "OK",
+    "(1.0, 3.0, 2.0)"
+   ],
+   "piso": [
+    "OK",
+    "(1.0, 3.0, 2.0)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M04",
+   "categoria": "math",
+   "recurso": "math.log10 e math.log2",
+   "codigo": "import math\nr = (math.log10(1000), math.log2(8))",
+   "cpython": [
+    "OK",
+    "(3.0, 3.0)"
+   ],
+   "teto": [
+    "OK",
+    "(3.0, 3.0)"
+   ],
+   "piso": [
+    "OK",
+    "(3.0, 3.0)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M05",
+   "categoria": "math",
+   "recurso": "math.sin(pi), cos, tan",
+   "codigo": "import math\nr = (math.sin(math.pi), math.cos(math.pi), math.tan(math.pi / 4))",
+   "cpython": [
+    "OK",
+    "(1.2246467991473532e-16, -1.0, 0.9999999999999999)"
+   ],
+   "teto": [
+    "OK",
+    "(1.224646799147353e-16, -1.0, 1.0)"
+   ],
+   "piso": [
+    "OK",
+    "(1.224646799147353e-16, -1.0, 1.0)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M06",
+   "categoria": "math",
+   "recurso": "asin, acos, atan, atan2",
+   "codigo": "import math\nr = (math.asin(1), math.acos(0), math.atan(1), math.atan2(1, -1))",
+   "cpython": [
+    "OK",
+    "(1.5707963267948966, 1.5707963267948966, 0.7853981633974483, 2.356194490192345)"
+   ],
+   "teto": [
+    "OK",
+    "(1.570796326794897, 1.570796326794897, 0.7853981633974483, 2.356194490192345)"
+   ],
+   "piso": [
+    "OK",
+    "(1.570796326794897, 1.570796326794897, 0.7853981633974483, 2.356194490192345)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M07",
+   "categoria": "math",
+   "recurso": "degrees, radians",
+   "codigo": "import math\nr = (math.degrees(math.pi), math.radians(180))",
+   "cpython": [
+    "OK",
+    "(180.0, 3.141592653589793)"
+   ],
+   "teto": [
+    "OK",
+    "(180.0, 3.141592653589793)"
+   ],
+   "piso": [
+    "OK",
+    "(180.0, 3.141592653589793)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M08",
+   "categoria": "math",
+   "recurso": "hiperbolicas sinh cosh tanh asinh acosh atanh",
+   "codigo": "import math\nr = (math.sinh(1), math.cosh(1), math.tanh(1), math.asinh(1), math.acosh(2), math.atanh(0.5))",
+   "cpython": [
+    "OK",
+    "(1.1752011936438014, 1.5430806348152437, 0.7615941559557649, 0.881373587019543, 1.3169578969248166, 0.5493061443340548)"
+   ],
+   "teto": [
+    "OK",
+    "(1.175201193643801, 1.543080634815244, 0.7615941559557649, 0.881373587019543, 1.316957896924817, 0.5493061443340549)"
+   ],
+   "piso": [
+    "OK",
+    "(1.175201193643801, 1.543080634815244, 0.7615941559557649, 0.881373587019543, 1.316957896924817, 0.5493061443340549)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M09",
+   "categoria": "math",
+   "recurso": "especiais erf erfc gamma lgamma expm1",
+   "codigo": "import math\nr = (math.erf(1), math.erfc(1), math.gamma(5), math.lgamma(5), math.expm1(1e-10))",
+   "cpython": [
+    "OK",
+    "(0.8427007929497149, 0.15729920705028513, 24.0, 3.178053830347945, 1.00000000005e-10)"
+   ],
+   "teto": [
+    "OK",
+    "(0.8427007929497149, 0.1572992070502851, 24.0, 3.178053830347946, 1.00000000005e-10)"
+   ],
+   "piso": [
+    "OK",
+    "(0.8427007929497149, 0.1572992070502851, 24.0, 3.178053830347946, 1.00000000005e-10)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M10",
+   "categoria": "math",
+   "recurso": "fabs fmod copysign modf frexp ldexp",
+   "codigo": "import math\nr = (math.fabs(-2), math.fmod(-7, 3), math.copysign(1, -0.0), math.modf(2.5), math.frexp(8), math.ldexp(1, 10))",
+   "cpython": [
+    "OK",
+    "(2.0, -1.0, -1.0, (0.5, 2.0), (0.5, 4), 1024.0)"
+   ],
+   "teto": [
+    "OK",
+    "(2.0, -1.0, -1.0, (0.5, 2.0), (0.5, 4), 1024.0)"
+   ],
+   "piso": [
+    "OK",
+    "(2.0, -1.0, -1.0, (0.5, 2.0), (0.5, 4), 1024.0)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M11",
+   "categoria": "math",
+   "recurso": "isfinite isinf isnan",
+   "codigo": "import math\nr = (math.isfinite(1e308), math.isinf(1e308 * 10), math.isnan(float('nan')))",
+   "cpython": [
+    "OK",
+    "(True, True, True)"
+   ],
+   "teto": [
+    "OK",
+    "(True, True, True)"
+   ],
+   "piso": [
+    "OK",
+    "(True, True, True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M12",
+   "categoria": "math",
+   "recurso": "math.factorial",
+   "codigo": "import math; r = math.factorial(20)",
+   "cpython": [
+    "OK",
+    "2432902008176640000"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'factorial'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'factorial'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M13",
+   "categoria": "math",
+   "recurso": "math.gcd",
+   "codigo": "import math; r = math.gcd(12, 18)",
+   "cpython": [
+    "OK",
+    "6"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'gcd'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'gcd'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M14",
+   "categoria": "math",
+   "recurso": "math.isclose",
+   "codigo": "import math; r = math.isclose(0.1 + 0.2, 0.3)",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'isclose'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'isclose'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M15",
+   "categoria": "math",
+   "recurso": "math.inf e math.nan",
+   "codigo": "import math; r = (math.inf, math.nan)",
+   "cpython": [
+    "OK",
+    "(inf, nan)"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'inf'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'inf'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M16",
+   "categoria": "math",
+   "recurso": "math.tau",
+   "codigo": "import math; r = math.tau",
+   "cpython": [
+    "OK",
+    "6.283185307179586"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'tau'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'tau'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M17",
+   "categoria": "math",
+   "recurso": "math.hypot",
+   "codigo": "import math; r = math.hypot(3, 4)",
+   "cpython": [
+    "OK",
+    "5.0"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'hypot'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'hypot'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M18",
+   "categoria": "math",
+   "recurso": "math.fsum",
+   "codigo": "import math; r = math.fsum([0.1] * 10)",
+   "cpython": [
+    "OK",
+    "1.0"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'fsum'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'module' object has no attribute 'fsum'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M19",
+   "categoria": "math",
+   "recurso": "math.comb / perm / prod / isqrt / dist",
+   "codigo": "import math\nr = [n for n in ('comb', 'perm', 'prod', 'isqrt', 'dist', 'lcm', 'cbrt', 'exp2', 'remainder', 'ulp', 'nextafter') if hasattr(math, n)]",
+   "cpython": [
+    "OK",
+    "['comb', 'perm', 'prod', 'isqrt', 'dist', 'lcm', 'cbrt', 'exp2', 'remainder', 'ulp', 'nextafter']"
+   ],
+   "teto": [
+    "OK",
+    "[]"
+   ],
+   "piso": [
+    "OK",
+    "[]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M20",
+   "categoria": "math",
+   "recurso": "math.sqrt(-1)",
+   "codigo": "import math; r = math.sqrt(-1)",
+   "cpython": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M21",
+   "categoria": "math",
+   "recurso": "math.log(0)",
+   "codigo": "import math; r = math.log(0)",
+   "cpython": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M22",
+   "categoria": "math",
+   "recurso": "math.acos(2)",
+   "codigo": "import math; r = math.acos(2)",
+   "cpython": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M23",
+   "categoria": "math",
+   "recurso": "math.exp(1000)",
+   "codigo": "import math; r = math.exp(1000)",
+   "cpython": [
+    "ERRO",
+    "OverflowError: math range error"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "M24",
+   "categoria": "math",
+   "recurso": "math.floor(1e300) exato",
+   "codigo": "import math; r = math.floor(1e300) == int(1e300)",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "OK",
+    "True"
+   ],
+   "piso": [
+    "OK",
+    "True"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "M25",
+   "categoria": "math",
+   "recurso": "math.pow(-8, 1/3)",
+   "codigo": "import math; r = math.pow(-8, 1 / 3)",
+   "cpython": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: math domain error"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "R01",
+   "categoria": "random",
+   "recurso": "funcoes do random",
+   "codigo": "import random\nr = sorted(n for n in dir(random) if not n.startswith('_'))",
+   "cpython": [
+    "OK",
+    "['BPF', 'LOG4', 'NV_MAGICCONST', 'RECIP_BPF', 'Random', 'SG_MAGICCONST', 'SystemRandom', 'TWOPI', 'betavariate', 'choice', 'choices', 'expovariate', 'gammavariate', 'gauss', 'getrandbits', 'getstate', 'lognormvariate', 'normalvariate', 'paretovariate', 'randbytes', 'randint', 'random', 'randrange', 'sample', 'seed', 'setstate', 'shuffle', 'triangular', 'uniform', 'vonmisesvariate', 'weibullvariate']"
+   ],
+   "teto": [
+    "OK",
+    "['choice', 'getrandbits', 'randint', 'random', 'randrange', 'seed', 'uniform']"
+   ],
+   "piso": [
+    "OK",
+    "['choice', 'getrandbits', 'randint', 'random', 'randrange', 'seed', 'uniform']"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "R02",
+   "categoria": "random",
+   "recurso": "random.seed(1) reproduz sequencia",
+   "codigo": "import random\nrandom.seed(1); a = [random.randint(1, 100) for i in range(5)]\nrandom.seed(1); b = [random.randint(1, 100) for i in range(5)]\nr = a == b",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "OK",
+    "True"
+   ],
+   "piso": [
+    "OK",
+    "True"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "R03",
+   "categoria": "random",
+   "recurso": "random.shuffle / sample / gauss / choices",
+   "codigo": "import random\nr = [n for n in ('shuffle', 'sample', 'gauss', 'choices', 'triangular', 'normalvariate') if hasattr(random, n)]",
+   "cpython": [
+    "OK",
+    "['shuffle', 'sample', 'gauss', 'choices', 'triangular', 'normalvariate']"
+   ],
+   "teto": [
+    "OK",
+    "[]"
+   ],
+   "piso": [
+    "OK",
+    "[]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "R04",
+   "categoria": "random",
+   "recurso": "randrange com passo",
+   "codigo": "import random\nrandom.seed(3)\nr = all(random.randrange(0, 10, 2) % 2 == 0 for i in range(50))",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "OK",
+    "True"
+   ],
+   "piso": [
+    "OK",
+    "True"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "R05",
+   "categoria": "random",
+   "recurso": "random.seed() sem argumento",
+   "codigo": "import random\nrandom.seed()\nr = 'aceito'",
+   "cpython": [
+    "OK",
+    "'aceito'"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: function takes 1 positional arguments but 0 were given"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: function takes 1 positional arguments but 0 were given"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F01",
+   "categoria": "texto",
+   "recurso": "% com .2f d s r",
+   "codigo": "r = '%5.2f|%d|%s|%r' % (3.14159, 42, 'a', 'b')",
+   "cpython": [
+    "OK",
+    "\" 3.14|42|a|'b'\""
+   ],
+   "teto": [
+    "OK",
+    "\" 3.14|42|a|'b'\""
+   ],
+   "piso": [
+    "OK",
+    "\" 3.14|42|a|'b'\""
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F02",
+   "categoria": "texto",
+   "recurso": "% com x o e g",
+   "codigo": "r = '%x %o %e %g' % (255, 8, 12345.678, 0.00001)",
+   "cpython": [
+    "OK",
+    "'ff 10 1.234568e+04 1e-05'"
+   ],
+   "teto": [
+    "OK",
+    "'ff 10 1.234568e+04 1e-05'"
+   ],
+   "piso": [
+    "OK",
+    "'ff 10 1.234568e+04 1e-05'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F03",
+   "categoria": "texto",
+   "recurso": "% alinhamento e zeros",
+   "codigo": "r = '%-5s|%05d|%+d' % ('ab', 42, 5)",
+   "cpython": [
+    "OK",
+    "'ab   |00042|+5'"
+   ],
+   "teto": [
+    "OK",
+    "'ab   |00042|+5'"
+   ],
+   "piso": [
+    "OK",
+    "'ab   |00042|+5'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F04",
+   "categoria": "texto",
+   "recurso": "% com dicionario %(a)s",
+   "codigo": "r = '%(a)s-%(b)d' % {'a': 'x', 'b': 2}",
+   "cpython": [
+    "OK",
+    "'x-2'"
+   ],
+   "teto": [
+    "OK",
+    "'x-2'"
+   ],
+   "piso": [
+    "OK",
+    "'x-2'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F05",
+   "categoria": "texto",
+   "recurso": "format posicional e nomeado",
+   "codigo": "r = ('{} {}'.format(1, 2), '{0}{1}{0}'.format('a', 'b'), '{x}'.format(x=1))",
+   "cpython": [
+    "OK",
+    "('1 2', 'aba', '1')"
+   ],
+   "teto": [
+    "OK",
+    "('1 2', 'aba', '1')"
+   ],
+   "piso": [
+    "OK",
+    "('1 2', 'aba', '1')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F06",
+   "categoria": "texto",
+   "recurso": "format alinhamento < > ^ e preenchimento",
+   "codigo": "r = ('{:>8}|'.format('ab'), '{:<8}|'.format('ab'), '{:^8}|'.format('ab'), '{:*^9}'.format('ab'))",
+   "cpython": [
+    "OK",
+    "('      ab|', 'ab      |', '   ab   |', '***ab****')"
+   ],
+   "teto": [
+    "OK",
+    "('      ab|', 'ab      |', '   ab   |', '***ab****')"
+   ],
+   "piso": [
+    "OK",
+    "('      ab|', 'ab      |', '   ab   |', '***ab****')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F07",
+   "categoria": "texto",
+   "recurso": "format f e g %",
+   "codigo": "r = ('{:.3f}'.format(2 / 3), '{:10.4f}'.format(3.14159), '{:e}'.format(12345.678), '{:g}'.format(1e-5), '{:%}'.format(0.25))",
+   "cpython": [
+    "OK",
+    "('0.667', '    3.1416', '1.234568e+04', '1e-05', '25.000000%')"
+   ],
+   "teto": [
+    "OK",
+    "('0.667', '    3.1416', '1.234568e+04', '1e-05', '25.000000%')"
+   ],
+   "piso": [
+    "OK",
+    "('0.667', '    3.1416', '1.234568e+04', '1e-05', '25.000000%')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F08",
+   "categoria": "texto",
+   "recurso": "format separador de milhar {:,}",
+   "codigo": "r = '{:,}'.format(1234567)",
+   "cpython": [
+    "OK",
+    "'1,234,567'"
+   ],
+   "teto": [
+    "OK",
+    "'1,234,567'"
+   ],
+   "piso": [
+    "OK",
+    "'1,234,567'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F09",
+   "categoria": "texto",
+   "recurso": "format sinal e zeros",
+   "codigo": "r = ('{:08.3f}'.format(-3.14159), '{:+d}'.format(5), '{:05d}'.format(42))",
+   "cpython": [
+    "OK",
+    "('-003.142', '+5', '00042')"
+   ],
+   "teto": [
+    "OK",
+    "('-003.142', '+5', '00042')"
+   ],
+   "piso": [
+    "OK",
+    "('-003.142', '+5', '00042')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F10",
+   "categoria": "texto",
+   "recurso": "format b x #x o",
+   "codigo": "r = ('{:b}'.format(10), '{:x}'.format(255), '{:#x}'.format(255), '{:o}'.format(8))",
+   "cpython": [
+    "OK",
+    "('1010', 'ff', '0xff', '10')"
+   ],
+   "teto": [
+    "OK",
+    "('1010', 'ff', '0xff', '10')"
+   ],
+   "piso": [
+    "OK",
+    "('1010', 'ff', '0xff', '10')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F11",
+   "categoria": "texto",
+   "recurso": "format com indice {0[1]}",
+   "codigo": "r = '{0[1]}'.format([5, 6])",
+   "cpython": [
+    "OK",
+    "'6'"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: attributes not supported yet"
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: attributes not supported yet"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F12",
+   "categoria": "texto",
+   "recurso": "format com atributo {a.real}",
+   "codigo": "r = '{a.real}'.format(a=3)",
+   "cpython": [
+    "OK",
+    "'3'"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: attributes not supported yet"
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: attributes not supported yet"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F13",
+   "categoria": "texto",
+   "recurso": "format !r e !s",
+   "codigo": "r = ('{!r}'.format('x'), '{!s}'.format(1.5))",
+   "cpython": [
+    "OK",
+    "(\"'x'\", '1.5')"
+   ],
+   "teto": [
+    "OK",
+    "(\"'x'\", '1.5')"
+   ],
+   "piso": [
+    "OK",
+    "(\"'x'\", '1.5')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F14",
+   "categoria": "texto",
+   "recurso": "format() embutido",
+   "codigo": "r = (format(3.14159, '.2f'), format(255, 'x'), format(7, '03d'))",
+   "cpython": [
+    "OK",
+    "('3.14', 'ff', '007')"
+   ],
+   "teto": [
+    "ERRO",
+    "NameError: name 'format' is not defined"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'format' is not defined"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F15",
+   "categoria": "texto",
+   "recurso": "format de largura padrao numero x texto",
+   "codigo": "r = ('{:5}|'.format(3), '{:5}|'.format('a'))",
+   "cpython": [
+    "OK",
+    "('    3|', 'a    |')"
+   ],
+   "teto": [
+    "OK",
+    "('    3|', 'a    |')"
+   ],
+   "piso": [
+    "OK",
+    "('    3|', 'a    |')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F16",
+   "categoria": "texto",
+   "recurso": "str.ljust / rjust",
+   "codigo": "r = ('ab'.ljust(5) + '|', 'ab'.rjust(5))",
+   "cpython": [
+    "OK",
+    "('ab   |', '   ab')"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'ljust'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'ljust'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F17",
+   "categoria": "texto",
+   "recurso": "str.center / zfill",
+   "codigo": "r = ('ab'.center(6) + '|', '42'.zfill(5))",
+   "cpython": [
+    "OK",
+    "('  ab  |', '00042')"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'zfill'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'center'"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "F18",
+   "categoria": "texto",
+   "recurso": "str.title / capitalize / swapcase",
+   "codigo": "r = ('ola mundo'.title(), 'ola'.capitalize(), 'Ab'.swapcase())",
+   "cpython": [
+    "OK",
+    "('Ola Mundo', 'Ola', 'aB')"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'title'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'title'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F19",
+   "categoria": "texto",
+   "recurso": "split basico",
+   "codigo": "r = ('a,b,,c'.split(','), 'a b  c'.split(), 'a b c'.split(None, 1))",
+   "cpython": [
+    "OK",
+    "(['a', 'b', '', 'c'], ['a', 'b', 'c'], ['a', 'b c'])"
+   ],
+   "teto": [
+    "OK",
+    "(['a', 'b', '', 'c'], ['a', 'b', 'c'], ['a', 'b c'])"
+   ],
+   "piso": [
+    "OK",
+    "(['a', 'b', '', 'c'], ['a', 'b', 'c'], ['a', 'b c'])"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F20",
+   "categoria": "texto",
+   "recurso": "rsplit(None, 1)",
+   "codigo": "r = 'a b c'.rsplit(None, 1)",
+   "cpython": [
+    "OK",
+    "['a b', 'c']"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: rsplit(None,n)"
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: rsplit(None,n)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F21",
+   "categoria": "texto",
+   "recurso": "rsplit(',', 1)",
+   "codigo": "r = 'a,b,c'.rsplit(',', 1)",
+   "cpython": [
+    "OK",
+    "['a,b', 'c']"
+   ],
+   "teto": [
+    "OK",
+    "['a,b', 'c']"
+   ],
+   "piso": [
+    "OK",
+    "['a,b', 'c']"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F22",
+   "categoria": "texto",
+   "recurso": "strip com caracteres",
+   "codigo": "r = (' x '.strip(), 'xxhixx'.strip('x'), '..a'.lstrip('.'), 'a..'.rstrip('.'))",
+   "cpython": [
+    "OK",
+    "('x', 'hi', 'a', 'a')"
+   ],
+   "teto": [
+    "OK",
+    "('x', 'hi', 'a', 'a')"
+   ],
+   "piso": [
+    "OK",
+    "('x', 'hi', 'a', 'a')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F23",
+   "categoria": "texto",
+   "recurso": "find rfind index count replace",
+   "codigo": "s = 'hello'; r = (s.find('l'), s.rfind('l'), s.index('e'), s.count('l'), s.replace('l', 'L', 1))",
+   "cpython": [
+    "OK",
+    "(2, 3, 1, 2, 'heLlo')"
+   ],
+   "teto": [
+    "OK",
+    "(2, 3, 1, 2, 'heLlo')"
+   ],
+   "piso": [
+    "OK",
+    "(2, 3, 1, 2, 'heLlo')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F24",
+   "categoria": "texto",
+   "recurso": "startswith(tupla)",
+   "codigo": "r = 'hello'.startswith(('he', 'x'))",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: can't convert 'tuple' object to str implicitly"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: can't convert 'tuple' object to str implicitly"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F25",
+   "categoria": "texto",
+   "recurso": "endswith com inicio e fim",
+   "codigo": "r = 'hello'.endswith('ll', 0, 4)",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: function expected at most 3 arguments, got 4"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: function expected at most 3 arguments, got 4"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F26",
+   "categoria": "texto",
+   "recurso": "partition / rpartition",
+   "codigo": "r = ('a=b=c'.partition('='), 'a=b=c'.rpartition('='))",
+   "cpython": [
+    "OK",
+    "(('a', '=', 'b=c'), ('a=b', '=', 'c'))"
+   ],
+   "teto": [
+    "OK",
+    "(('a', '=', 'b=c'), ('a=b', '=', 'c'))"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'partition'"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "F27",
+   "categoria": "texto",
+   "recurso": "isdigit isalpha isspace isupper islower",
+   "codigo": "r = ('12'.isdigit(), 'ab'.isalpha(), ' '.isspace(), 'AB'.isupper(), 'ab'.islower())",
+   "cpython": [
+    "OK",
+    "(True, True, True, True, True)"
+   ],
+   "teto": [
+    "OK",
+    "(True, True, True, True, True)"
+   ],
+   "piso": [
+    "OK",
+    "(True, True, True, True, True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F28",
+   "categoria": "texto",
+   "recurso": "isalnum isdecimal isnumeric isidentifier",
+   "codigo": "r = [m for m in ('isalnum', 'isdecimal', 'isnumeric', 'isidentifier', 'isprintable', 'istitle') if hasattr('', m)]",
+   "cpython": [
+    "OK",
+    "['isalnum', 'isdecimal', 'isnumeric', 'isidentifier', 'isprintable', 'istitle']"
+   ],
+   "teto": [
+    "OK",
+    "[]"
+   ],
+   "piso": [
+    "OK",
+    "[]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F29",
+   "categoria": "texto",
+   "recurso": "fatiamento com passo s[::-1] e s[1:5:2]",
+   "codigo": "s = 'abcdef'; r = (s[::-1], s[1:5:2])",
+   "cpython": [
+    "OK",
+    "('fedcba', 'bd')"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: only slices with step=1 (aka None) are supported"
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: only slices with step=1 (aka None) are supported"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F30",
+   "categoria": "texto",
+   "recurso": "join, * e in",
+   "codigo": "r = ('-'.join(['a', 'b']), 'ab' * 3, 'b' in 'abc')",
+   "cpython": [
+    "OK",
+    "('a-b', 'ababab', True)"
+   ],
+   "teto": [
+    "OK",
+    "('a-b', 'ababab', True)"
+   ],
+   "piso": [
+    "OK",
+    "('a-b', 'ababab', True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F31",
+   "categoria": "texto",
+   "recurso": "len de texto acentuado",
+   "codigo": "r = len('\\u00e9')",
+   "cpython": [
+    "OK",
+    "1"
+   ],
+   "teto": [
+    "OK",
+    "1"
+   ],
+   "piso": [
+    "OK",
+    "1"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F32",
+   "categoria": "texto",
+   "recurso": "encode / decode",
+   "codigo": "r = ('\\u00e9'.encode(), b'ab'.decode(), str(b'ab', 'utf8'))",
+   "cpython": [
+    "OK",
+    "(b'\\xc3\\xa9', 'ab', 'ab')"
+   ],
+   "teto": [
+    "OK",
+    "(b'\\xc3\\xa9', 'ab', 'ab')"
+   ],
+   "piso": [
+    "OK",
+    "(b'\\xe9', 'ab', 'ab')"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "F33",
+   "categoria": "texto",
+   "recurso": "str.format_map",
+   "codigo": "r = '{a}'.format_map({'a': 1})",
+   "cpython": [
+    "OK",
+    "'1'"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'format_map'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'format_map'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F34",
+   "categoria": "texto",
+   "recurso": "str.casefold / expandtabs / splitlines",
+   "codigo": "r = [m for m in ('casefold', 'expandtabs', 'splitlines', 'translate', 'maketrans', 'removeprefix') if hasattr('', m)]",
+   "cpython": [
+    "OK",
+    "['casefold', 'expandtabs', 'splitlines', 'translate', 'maketrans', 'removeprefix']"
+   ],
+   "teto": [
+    "OK",
+    "['splitlines']"
+   ],
+   "piso": [
+    "OK",
+    "[]"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "F35",
+   "categoria": "texto",
+   "recurso": "'%.20f' % 0.1 (digitos alem da precisao)",
+   "codigo": "r = '%.20f' % 0.1",
+   "cpython": [
+    "OK",
+    "'0.10000000000000000555'"
+   ],
+   "teto": [
+    "OK",
+    "'0.10000000000000000000'"
+   ],
+   "piso": [
+    "OK",
+    "'0.10000000000000000000'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F36",
+   "categoria": "texto",
+   "recurso": "'{:.17g}'.format(0.1)",
+   "codigo": "r = '{:.17g}'.format(0.1)",
+   "cpython": [
+    "OK",
+    "'0.10000000000000001'"
+   ],
+   "teto": [
+    "OK",
+    "'0.1'"
+   ],
+   "piso": [
+    "OK",
+    "'0.1'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "F37",
+   "categoria": "texto",
+   "recurso": "str() e repr() de complexo",
+   "codigo": "r = (str(3 + 4j), repr(1j), str(complex(1, 0)))",
+   "cpython": [
+    "OK",
+    "('(3+4j)', '1j', '(1+0j)')"
+   ],
+   "teto": [
+    "OK",
+    "('(3+4j)', '1j', '(1+0j)')"
+   ],
+   "piso": [
+    "OK",
+    "('(3+4j)', '1j', '(1+0j)')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F38",
+   "categoria": "texto",
+   "recurso": "ord / chr / chr(233)",
+   "codigo": "r = (ord('A'), chr(65), chr(233))",
+   "cpython": [
+    "OK",
+    "(65, 'A', 'é')"
+   ],
+   "teto": [
+    "OK",
+    "(65, 'A', '\\xe9')"
+   ],
+   "piso": [
+    "OK",
+    "(65, 'A', '�')"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "F39",
+   "categoria": "texto",
+   "recurso": "bin oct hex",
+   "codigo": "r = (bin(10), oct(8), hex(255), hex(-1))",
+   "cpython": [
+    "OK",
+    "('0b1010', '0o10', '0xff', '-0x1')"
+   ],
+   "teto": [
+    "OK",
+    "('0b1010', '0o10', '0xff', '-0x1')"
+   ],
+   "piso": [
+    "OK",
+    "('0b1010', '0o10', '0xff', '-0x1')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "F40",
+   "categoria": "texto",
+   "recurso": "splitlines",
+   "codigo": "r = 'a\\nb\\r\\nc'.splitlines()",
+   "cpython": [
+    "OK",
+    "['a', 'b', 'c']"
+   ],
+   "teto": [
+    "OK",
+    "['a', 'b', 'c']"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'str' object has no attribute 'splitlines'"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "C01",
+   "categoria": "colecoes",
+   "recurso": "ordem de insercao do dict (texto)",
+   "codigo": "d = {}\nfor k in ['zeta', 'alfa', 'mike', 'bravo', 'x', 'a', 'kilo', 'eco']:\n    d[k] = 1\nr = list(d)",
+   "cpython": [
+    "OK",
+    "['zeta', 'alfa', 'mike', 'bravo', 'x', 'a', 'kilo', 'eco']"
+   ],
+   "teto": [
+    "OK",
+    "['mike', 'zeta', 'kilo', 'eco', 'a', 'x', 'bravo', 'alfa']"
+   ],
+   "piso": [
+    "OK",
+    "['mike', 'zeta', 'kilo', 'eco', 'a', 'x', 'bravo', 'alfa']"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C02",
+   "categoria": "colecoes",
+   "recurso": "ordem de insercao do dict (inteiros)",
+   "codigo": "d = {}\nfor k in [50, 3, 9, 1, 27, 100]:\n    d[k] = 0\nr = list(d)",
+   "cpython": [
+    "OK",
+    "[50, 3, 9, 1, 27, 100]"
+   ],
+   "teto": [
+    "OK",
+    "[100, 1, 50, 9, 3, 27]"
+   ],
+   "piso": [
+    "OK",
+    "[100, 1, 50, 9, 3, 27]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C03",
+   "categoria": "colecoes",
+   "recurso": "ordem de iteracao do set",
+   "codigo": "r = list({50, 3, 9, 1, 27, 100})",
+   "cpython": [
+    "OK",
+    "[1, 50, 3, 100, 9, 27]"
+   ],
+   "teto": [
+    "OK",
+    "[100, 1, 50, 3, 9, 27]"
+   ],
+   "piso": [
+    "OK",
+    "[100, 1, 50, 3, 9, 27]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C04",
+   "categoria": "colecoes",
+   "recurso": "visoes keys/items",
+   "codigo": "d = {'a': 1}; r = (type(d.keys()).__name__, 'a' in d.keys(), list(d.items()))",
+   "cpython": [
+    "OK",
+    "('dict_keys', True, [('a', 1)])"
+   ],
+   "teto": [
+    "OK",
+    "('dict_view', True, [('a', 1)])"
+   ],
+   "piso": [
+    "OK",
+    "('dict_view', True, [('a', 1)])"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C05",
+   "categoria": "colecoes",
+   "recurso": "dict: setdefault get pop popitem",
+   "codigo": "d = {'a': 1}; r = (d.setdefault('b', 2), d.get('z', 0), d.pop('a'), d.pop('q', 'padrao'), d.popitem(), d)",
+   "cpython": [
+    "OK",
+    "(2, 0, 1, 'padrao', ('b', 2), {})"
+   ],
+   "teto": [
+    "OK",
+    "(2, 0, 1, 'padrao', ('b', 2), {})"
+   ],
+   "piso": [
+    "OK",
+    "(2, 0, 1, 'padrao', ('b', 2), {})"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C06",
+   "categoria": "colecoes",
+   "recurso": "dict: update(chaves) fromkeys copy",
+   "codigo": "d = {}; d.update(a=1); r = (d, sorted(dict.fromkeys('ab', 0).items()), d.copy() == d)",
+   "cpython": [
+    "OK",
+    "({'a': 1}, [('a', 0), ('b', 0)], True)"
+   ],
+   "teto": [
+    "OK",
+    "({'a': 1}, [('a', 0), ('b', 0)], True)"
+   ],
+   "piso": [
+    "OK",
+    "({'a': 1}, [('a', 0), ('b', 0)], True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C07",
+   "categoria": "colecoes",
+   "recurso": "dict(a=1), dict(pares), dict(zip())",
+   "codigo": "r = (sorted(dict(a=1, b=2).items()), dict([('a', 1)]), sorted(dict(zip('ab', [1, 2])).items()))",
+   "cpython": [
+    "OK",
+    "([('a', 1), ('b', 2)], {'a': 1}, [('a', 1), ('b', 2)])"
+   ],
+   "teto": [
+    "OK",
+    "([('a', 1), ('b', 2)], {'a': 1}, [('a', 1), ('b', 2)])"
+   ],
+   "piso": [
+    "OK",
+    "([('a', 1), ('b', 2)], {'a': 1}, [('a', 1), ('b', 2)])"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C08",
+   "categoria": "colecoes",
+   "recurso": "list: sort(key, reverse), copy, clear",
+   "codigo": "l = ['bb', 'a', 'ccc']\nl.sort(key=len, reverse=True)\nm = l.copy(); m.clear()\nr = (l, m)",
+   "cpython": [
+    "OK",
+    "(['ccc', 'bb', 'a'], [])"
+   ],
+   "teto": [
+    "OK",
+    "(['ccc', 'bb', 'a'], [])"
+   ],
+   "piso": [
+    "OK",
+    "(['ccc', 'bb', 'a'], [])"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C09",
+   "categoria": "colecoes",
+   "recurso": "list: index(x, inicio), insert, pop(0)",
+   "codigo": "l = [1, 2, 1, 3]; r = (l.index(1, 1), l.insert(-1, 9), l, l.pop(0), l)",
+   "cpython": [
+    "OK",
+    "(2, None, [2, 1, 9, 3], 1, [2, 1, 9, 3])"
+   ],
+   "teto": [
+    "OK",
+    "(2, None, [2, 1, 9, 3], 1, [2, 1, 9, 3])"
+   ],
+   "piso": [
+    "OK",
+    "(2, None, [2, 1, 9, 3], 1, [2, 1, 9, 3])"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C10",
+   "categoria": "colecoes",
+   "recurso": "atribuicao em fatia l[1:3] = [...]",
+   "codigo": "l = [0, 1, 2, 3, 4]; l[1:3] = ['a']; r = l",
+   "cpython": [
+    "OK",
+    "[0, 'a', 3, 4]"
+   ],
+   "teto": [
+    "OK",
+    "[0, 'a', 3, 4]"
+   ],
+   "piso": [
+    "OK",
+    "[0, 'a', 3, 4]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C11",
+   "categoria": "colecoes",
+   "recurso": "atribuicao em fatia com passo l[::2]",
+   "codigo": "l = [0, 1, 2, 3, 4]; l[::2] = [9, 9, 9]; r = l",
+   "cpython": [
+    "OK",
+    "[9, 1, 9, 3, 9]"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: "
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: "
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C12",
+   "categoria": "colecoes",
+   "recurso": "del l[::2]",
+   "codigo": "l = [0, 1, 2, 3, 4]; del l[::2]; r = l",
+   "cpython": [
+    "OK",
+    "[1, 3]"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: "
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: "
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C13",
+   "categoria": "colecoes",
+   "recurso": "lista aninhada com * (aliasing)",
+   "codigo": "m = [[0] * 2] * 2; m[0][0] = 1; r = m",
+   "cpython": [
+    "OK",
+    "[[1, 0], [1, 0]]"
+   ],
+   "teto": [
+    "OK",
+    "[[1, 0], [1, 0]]"
+   ],
+   "piso": [
+    "OK",
+    "[[1, 0], [1, 0]]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C14",
+   "categoria": "colecoes",
+   "recurso": "tupla: count index e fatia com passo",
+   "codigo": "t = (1, 2, 1, 3); r = (t.count(1), t.index(3), t[::2])",
+   "cpython": [
+    "OK",
+    "(2, 3, (1, 1))"
+   ],
+   "teto": [
+    "ERRO",
+    "NotImplementedError: only slices with step=1 (aka None) are supported"
+   ],
+   "piso": [
+    "ERRO",
+    "NotImplementedError: only slices with step=1 (aka None) are supported"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C15",
+   "categoria": "colecoes",
+   "recurso": "set: operadores e metodos",
+   "codigo": "a = {1, 2, 3}; b = {2, 3, 4}; r = (sorted(a | b), sorted(a & b), sorted(a - b), sorted(a ^ b), a <= a | b, {1}.issubset(a))",
+   "cpython": [
+    "OK",
+    "([1, 2, 3, 4], [2, 3], [1], [1, 4], True, True)"
+   ],
+   "teto": [
+    "OK",
+    "([1, 2, 3, 4], [2, 3], [1], [1, 4], True, True)"
+   ],
+   "piso": [
+    "OK",
+    "([1, 2, 3, 4], [2, 3], [1], [1, 4], True, True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C16",
+   "categoria": "colecoes",
+   "recurso": "set.remove de ausente",
+   "codigo": "s = {1}; s.remove(9)",
+   "cpython": [
+    "ERRO",
+    "KeyError: 9"
+   ],
+   "teto": [
+    "ERRO",
+    "KeyError: 9"
+   ],
+   "piso": [
+    "ERRO",
+    "KeyError: 9"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C17",
+   "categoria": "colecoes",
+   "recurso": "frozenset",
+   "codigo": "r = sorted(frozenset([3, 1, 2]))",
+   "cpython": [
+    "OK",
+    "[1, 2, 3]"
+   ],
+   "teto": [
+    "OK",
+    "[1, 2, 3]"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'frozenset' is not defined"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "C18",
+   "categoria": "colecoes",
+   "recurso": "sorted estavel com key",
+   "codigo": "r = sorted([('b', 1), ('a', 1), ('c', 0)], key=lambda t: t[1])",
+   "cpython": [
+    "OK",
+    "[('c', 0), ('b', 1), ('a', 1)]"
+   ],
+   "teto": [
+    "OK",
+    "[('c', 0), ('b', 1), ('a', 1)]"
+   ],
+   "piso": [
+    "OK",
+    "[('c', 0), ('b', 1), ('a', 1)]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C19",
+   "categoria": "colecoes",
+   "recurso": "sorted de tipos mistos",
+   "codigo": "r = sorted([1, 'a'])",
+   "cpython": [
+    "ERRO",
+    "TypeError: '<' not supported between instances of 'str' and 'int'"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: unsupported types for __lt__: 'int', 'str'"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: unsupported types for __lt__: 'int', 'str'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C20",
+   "categoria": "colecoes",
+   "recurso": "range: fatia, in, len, indice negativo, ==",
+   "codigo": "x = range(10); r = (x[2:5], 5 in x, len(range(0, 10, 3)), x[-1], range(3) == range(3))",
+   "cpython": [
+    "OK",
+    "(range(2, 5), True, 4, 9, True)"
+   ],
+   "teto": [
+    "OK",
+    "(range(2, 5), True, 4, 9, False)"
+   ],
+   "piso": [
+    "OK",
+    "(range(2, 5), True, 4, 9, False)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C21",
+   "categoria": "colecoes",
+   "recurso": "bytes e bytearray",
+   "codigo": "b = bytearray(b'ab'); b[0] = 65; r = (bytes(b), list(b'az'), b'ab' + b'c')",
+   "cpython": [
+    "OK",
+    "(b'Ab', [97, 122], b'abc')"
+   ],
+   "teto": [
+    "OK",
+    "(b'Ab', [97, 122], b'abc')"
+   ],
+   "piso": [
+    "OK",
+    "(b'Ab', [97, 122], b'abc')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C22",
+   "categoria": "colecoes",
+   "recurso": "memoryview",
+   "codigo": "r = bytes(memoryview(b'abc')[1:])",
+   "cpython": [
+    "OK",
+    "b'bc'"
+   ],
+   "teto": [
+    "OK",
+    "b'bc'"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'memoryview' is not defined"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "C23",
+   "categoria": "colecoes",
+   "recurso": "slice() objeto",
+   "codigo": "r = [0, 1, 2, 3, 4][slice(1, 4, 2)]",
+   "cpython": [
+    "OK",
+    "[1, 3]"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: cannot create 'slice' instances"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: cannot create 'slice' instances"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "C24",
+   "categoria": "colecoes",
+   "recurso": "lista: pop de vazia",
+   "codigo": "[].pop()",
+   "cpython": [
+    "ERRO",
+    "IndexError: pop from empty list"
+   ],
+   "teto": [
+    "ERRO",
+    "IndexError: pop from empty list"
+   ],
+   "piso": [
+    "ERRO",
+    "IndexError: pop from empty list"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "C25",
+   "categoria": "colecoes",
+   "recurso": "dict: chave lista (nao hashavel)",
+   "codigo": "r = {[1]: 2}",
+   "cpython": [
+    "ERRO",
+    "TypeError: unhashable type: 'list'"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: unsupported type for __hash__: 'list'"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: unsupported type for __hash__: 'list'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B01",
+   "categoria": "builtins",
+   "recurso": "enumerate(start=1)",
+   "codigo": "r = list(enumerate('ab', start=1))",
+   "cpython": [
+    "OK",
+    "[(1, 'a'), (2, 'b')]"
+   ],
+   "teto": [
+    "OK",
+    "[(1, 'a'), (2, 'b')]"
+   ],
+   "piso": [
+    "OK",
+    "[(1, 'a'), (2, 'b')]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B02",
+   "categoria": "builtins",
+   "recurso": "zip de tamanhos diferentes",
+   "codigo": "r = list(zip([1, 2, 3], 'ab'))",
+   "cpython": [
+    "OK",
+    "[(1, 'a'), (2, 'b')]"
+   ],
+   "teto": [
+    "OK",
+    "[(1, 'a'), (2, 'b')]"
+   ],
+   "piso": [
+    "OK",
+    "[(1, 'a'), (2, 'b')]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B03",
+   "categoria": "builtins",
+   "recurso": "map com 2 iteraveis",
+   "codigo": "r = list(map(lambda a, b: a + b, [1, 2], [10, 20]))",
+   "cpython": [
+    "OK",
+    "[11, 22]"
+   ],
+   "teto": [
+    "OK",
+    "[11, 22]"
+   ],
+   "piso": [
+    "OK",
+    "[11, 22]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B04",
+   "categoria": "builtins",
+   "recurso": "filter(None, ...)",
+   "codigo": "r = list(filter(None, [0, 1, '', 'a', None]))",
+   "cpython": [
+    "OK",
+    "[1, 'a']"
+   ],
+   "teto": [
+    "OK",
+    "[1, 'a']"
+   ],
+   "piso": [
+    "OK",
+    "[1, 'a']"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B05",
+   "categoria": "builtins",
+   "recurso": "min(key=) max(default=)",
+   "codigo": "r = (min(['bb', 'a'], key=len), max([], default=-1))",
+   "cpython": [
+    "OK",
+    "('a', -1)"
+   ],
+   "teto": [
+    "OK",
+    "('a', -1)"
+   ],
+   "piso": [
+    "OK",
+    "('a', -1)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B06",
+   "categoria": "builtins",
+   "recurso": "sum com inicio (listas)",
+   "codigo": "r = sum([[1], [2]], [])",
+   "cpython": [
+    "OK",
+    "[1, 2]"
+   ],
+   "teto": [
+    "OK",
+    "[1, 2]"
+   ],
+   "piso": [
+    "OK",
+    "[1, 2]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B07",
+   "categoria": "builtins",
+   "recurso": "any / all",
+   "codigo": "r = (any([0, 0, 1]), all([]))",
+   "cpython": [
+    "OK",
+    "(True, True)"
+   ],
+   "teto": [
+    "OK",
+    "(True, True)"
+   ],
+   "piso": [
+    "OK",
+    "(True, True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B08",
+   "categoria": "builtins",
+   "recurso": "reversed de lista, range e str",
+   "codigo": "r = (list(reversed([1, 2])), list(reversed(range(3))), list(reversed('ab')))",
+   "cpython": [
+    "OK",
+    "([2, 1], [2, 1, 0], ['b', 'a'])"
+   ],
+   "teto": [
+    "OK",
+    "([2, 1], [2, 1, 0], ['b', 'a'])"
+   ],
+   "piso": [
+    "OK",
+    "([2, 1], [2, 1, 0], ['b', 'a'])"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B09",
+   "categoria": "builtins",
+   "recurso": "isinstance com tupla, issubclass",
+   "codigo": "r = (isinstance(1, (int, float)), issubclass(bool, int))",
+   "cpython": [
+    "OK",
+    "(True, True)"
+   ],
+   "teto": [
+    "OK",
+    "(True, False)"
+   ],
+   "piso": [
+    "OK",
+    "(True, False)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B10",
+   "categoria": "builtins",
+   "recurso": "getattr/setattr/hasattr/delattr",
+   "codigo": "class A:\n    pass\na = A(); setattr(a, 'x', 1)\nr = (getattr(a, 'x'), getattr(a, 'y', 'padrao'), hasattr(a, 'x'))\ndelattr(a, 'x')\nr = r + (hasattr(a, 'x'),)",
+   "cpython": [
+    "OK",
+    "(1, 'padrao', True, False)"
+   ],
+   "teto": [
+    "OK",
+    "(1, 'padrao', True, False)"
+   ],
+   "piso": [
+    "OK",
+    "(1, 'padrao', True, False)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B11",
+   "categoria": "builtins",
+   "recurso": "type(nome, bases, dict)",
+   "codigo": "X = type('X', (), {'a': 1}); r = (X.a, X.__name__)",
+   "cpython": [
+    "OK",
+    "(1, 'X')"
+   ],
+   "teto": [
+    "OK",
+    "(1, 'X')"
+   ],
+   "piso": [
+    "OK",
+    "(1, 'X')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B12",
+   "categoria": "builtins",
+   "recurso": "vars()",
+   "codigo": "class A:\n    pass\na = A(); a.x = 1\nr = vars(a)",
+   "cpython": [
+    "OK",
+    "{'x': 1}"
+   ],
+   "teto": [
+    "ERRO",
+    "NameError: name 'vars' is not defined"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'vars' is not defined"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B13",
+   "categoria": "builtins",
+   "recurso": "callable, id, hash",
+   "codigo": "r = (callable(len), type(id(1)).__name__, hash('a') == hash('a'))",
+   "cpython": [
+    "OK",
+    "(True, 'int', True)"
+   ],
+   "teto": [
+    "OK",
+    "(True, 'int', True)"
+   ],
+   "piso": [
+    "OK",
+    "(True, 'int', True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B14",
+   "categoria": "builtins",
+   "recurso": "eval e exec",
+   "codigo": "ns = {}; exec('z = 2 + 3', ns); r = (eval('1 + 2'), ns['z'])",
+   "cpython": [
+    "OK",
+    "(3, 5)"
+   ],
+   "teto": [
+    "OK",
+    "(3, 5)"
+   ],
+   "piso": [
+    "OK",
+    "(3, 5)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B15",
+   "categoria": "builtins",
+   "recurso": "compile()",
+   "codigo": "r = eval(compile('1 + 1', '<s>', 'eval'))",
+   "cpython": [
+    "OK",
+    "2"
+   ],
+   "teto": [
+    "OK",
+    "2"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'compile' is not defined"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "B16",
+   "categoria": "builtins",
+   "recurso": "iter(callable, sentinela)",
+   "codigo": "it = iter([3, 2, 1, 0, 5])\nr = list(iter(lambda: next(it), 0))",
+   "cpython": [
+    "OK",
+    "[3, 2, 1]"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: function takes 1 positional arguments but 2 were given"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: function takes 1 positional arguments but 2 were given"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B17",
+   "categoria": "builtins",
+   "recurso": "next(gerador, padrao)",
+   "codigo": "r = next(iter([]), 'vazio')",
+   "cpython": [
+    "OK",
+    "'vazio'"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: function takes 1 positional arguments but 2 were given"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: function takes 1 positional arguments but 2 were given"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B18",
+   "categoria": "builtins",
+   "recurso": "sorted(dict) e max(dict, key=dict.get)",
+   "codigo": "d = {'a': 3, 'b': 5}; r = (sorted(d), max(d, key=d.get))",
+   "cpython": [
+    "OK",
+    "(['a', 'b'], 'b')"
+   ],
+   "teto": [
+    "OK",
+    "(['a', 'b'], 'b')"
+   ],
+   "piso": [
+    "OK",
+    "(['a', 'b'], 'b')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B19",
+   "categoria": "builtins",
+   "recurso": "print aceita sep, end e file",
+   "codigo": "import sys\nr = 'print(sep=, end=) ok'",
+   "cpython": [
+    "OK",
+    "'print(sep=, end=) ok'"
+   ],
+   "teto": [
+    "OK",
+    "'print(sep=, end=) ok'"
+   ],
+   "piso": [
+    "OK",
+    "'print(sep=, end=) ok'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B20",
+   "categoria": "builtins",
+   "recurso": "ascii()",
+   "codigo": "r = ascii('\\u00e9')",
+   "cpython": [
+    "OK",
+    "\"'\\\\xe9'\""
+   ],
+   "teto": [
+    "ERRO",
+    "NameError: name 'ascii' is not defined"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'ascii' is not defined"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B21",
+   "categoria": "builtins",
+   "recurso": "divmod de float",
+   "codigo": "r = divmod(7.5, 2)",
+   "cpython": [
+    "OK",
+    "(3.0, 1.5)"
+   ],
+   "teto": [
+    "OK",
+    "(3.0, 1.5)"
+   ],
+   "piso": [
+    "OK",
+    "(3.0, 1.5)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B22",
+   "categoria": "builtins",
+   "recurso": "globals() e locals() na funcao",
+   "codigo": "def f():\n    v = 1\n    return 'v' in locals()\nr = (f(), 'f' in globals())",
+   "cpython": [
+    "OK",
+    "(True, True)"
+   ],
+   "teto": [
+    "OK",
+    "(False, True)"
+   ],
+   "piso": [
+    "OK",
+    "(False, True)"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B23",
+   "categoria": "builtins",
+   "recurso": "__import__",
+   "codigo": "r = __import__('math').floor(1.5)",
+   "cpython": [
+    "OK",
+    "1"
+   ],
+   "teto": [
+    "OK",
+    "1"
+   ],
+   "piso": [
+    "OK",
+    "1"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "B24",
+   "categoria": "builtins",
+   "recurso": "help() existe",
+   "codigo": "r = callable(help)",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "ERRO",
+    "NameError: name 'help' is not defined"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'help' is not defined"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "B25",
+   "categoria": "builtins",
+   "recurso": "open() existe",
+   "codigo": "r = callable(open)",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "OK",
+    "True"
+   ],
+   "piso": [
+    "OK",
+    "True"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O01",
+   "categoria": "classes",
+   "recurso": "super() sem argumentos",
+   "codigo": "class A:\n    def f(self):\n        return 'A'\nclass B(A):\n    def f(self):\n        return 'B' + super().f()\nr = B().f()",
+   "cpython": [
+    "OK",
+    "'BA'"
+   ],
+   "teto": [
+    "OK",
+    "'BA'"
+   ],
+   "piso": [
+    "OK",
+    "'BA'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O02",
+   "categoria": "classes",
+   "recurso": "property com setter",
+   "codigo": "class T:\n    def __init__(self):\n        self._c = 0\n    @property\n    def c(self):\n        return self._c\n    @c.setter\n    def c(self, v):\n        self._c = v * 2\nt = T(); t.c = 5\nr = t.c",
+   "cpython": [
+    "OK",
+    "10"
+   ],
+   "teto": [
+    "OK",
+    "10"
+   ],
+   "piso": [
+    "OK",
+    "10"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O03",
+   "categoria": "classes",
+   "recurso": "classmethod e staticmethod",
+   "codigo": "class A:\n    n = 1\n    @classmethod\n    def cm(cls):\n        return cls.n\n    @staticmethod\n    def sm(x):\n        return x + 1\nr = (A.cm(), A.sm(1), A().cm())",
+   "cpython": [
+    "OK",
+    "(1, 2, 1)"
+   ],
+   "teto": [
+    "OK",
+    "(1, 2, 1)"
+   ],
+   "piso": [
+    "OK",
+    "(1, 2, 1)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O04",
+   "categoria": "classes",
+   "recurso": "__str__ e __repr__",
+   "codigo": "class P:\n    def __str__(self):\n        return 'str'\n    def __repr__(self):\n        return 'repr'\nr = (str(P()), repr(P()), str([P()]))",
+   "cpython": [
+    "OK",
+    "('str', 'repr', '[repr]')"
+   ],
+   "teto": [
+    "OK",
+    "('str', 'repr', '[repr]')"
+   ],
+   "piso": [
+    "OK",
+    "('str', 'repr', '[repr]')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O05",
+   "categoria": "classes",
+   "recurso": "__eq__ e __lt__ (ordenar objetos)",
+   "codigo": "class V:\n    def __init__(self, v):\n        self.v = v\n    def __lt__(self, o):\n        return self.v < o.v\n    def __eq__(self, o):\n        return self.v == o.v\nr = ([x.v for x in sorted([V(2), V(1), V(3)])], V(1) == V(1))",
+   "cpython": [
+    "OK",
+    "([1, 2, 3], True)"
+   ],
+   "teto": [
+    "OK",
+    "([1, 2, 3], True)"
+   ],
+   "piso": [
+    "OK",
+    "([1, 2, 3], True)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O06",
+   "categoria": "classes",
+   "recurso": "__eq__ sem __hash__ torna nao hashavel?",
+   "codigo": "class V:\n    def __eq__(self, o):\n        return True\nr = len({V(), V()})",
+   "cpython": [
+    "ERRO",
+    "TypeError: unhashable type: 'V'"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: unsupported type for __hash__: 'V'"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: unsupported type for __hash__: 'V'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O07",
+   "categoria": "classes",
+   "recurso": "__radd__ (operador refletido)",
+   "codigo": "class V:\n    def __radd__(self, o):\n        return 'radd'\nr = 1 + V()",
+   "cpython": [
+    "OK",
+    "'radd'"
+   ],
+   "teto": [
+    "OK",
+    "'radd'"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: unsupported types for __add__: 'int', 'V'"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "O08",
+   "categoria": "classes",
+   "recurso": "__add__ e __iadd__",
+   "codigo": "class V:\n    def __init__(self, v):\n        self.v = v\n    def __add__(self, o):\n        return V(self.v + o.v)\n    def __iadd__(self, o):\n        self.v += 100 * o.v\n        return self\na = V(1); b = a + V(2); a += V(1)\nr = (b.v, a.v)",
+   "cpython": [
+    "OK",
+    "(3, 101)"
+   ],
+   "teto": [
+    "OK",
+    "(3, 101)"
+   ],
+   "piso": [
+    "OK",
+    "(3, 101)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O09",
+   "categoria": "classes",
+   "recurso": "__len__ __getitem__ __contains__ __iter__",
+   "codigo": "class S:\n    def __len__(self):\n        return 3\n    def __getitem__(self, i):\n        if i >= 3:\n            raise IndexError\n        return i * 10\n    def __contains__(self, x):\n        return x == 'q'\ns = S()\nr = (len(s), s[1], 'q' in s, list(s))",
+   "cpython": [
+    "OK",
+    "(3, 10, True, [0, 10, 20])"
+   ],
+   "teto": [
+    "OK",
+    "(3, 10, True, [0, 10, 20])"
+   ],
+   "piso": [
+    "OK",
+    "(3, 10, True, [0, 10, 20])"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O10",
+   "categoria": "classes",
+   "recurso": "__call__ e __bool__",
+   "codigo": "class F:\n    def __call__(self, x):\n        return x * 2\n    def __bool__(self):\n        return False\nr = (F()(4), bool(F()))",
+   "cpython": [
+    "OK",
+    "(8, False)"
+   ],
+   "teto": [
+    "OK",
+    "(8, False)"
+   ],
+   "piso": [
+    "OK",
+    "(8, False)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O11",
+   "categoria": "classes",
+   "recurso": "__getattr__ (fallback)",
+   "codigo": "class G:\n    def __getattr__(self, n):\n        return 'auto_' + n\nr = G().qualquer",
+   "cpython": [
+    "OK",
+    "'auto_qualquer'"
+   ],
+   "teto": [
+    "OK",
+    "'auto_qualquer'"
+   ],
+   "piso": [
+    "OK",
+    "'auto_qualquer'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O12",
+   "categoria": "classes",
+   "recurso": "__setattr__ sobrescrito",
+   "codigo": "class G:\n    def __setattr__(self, n, v):\n        object.__setattr__(self, n, v * 2)\ng = G(); g.x = 2\nr = g.x",
+   "cpython": [
+    "OK",
+    "4"
+   ],
+   "teto": [
+    "OK",
+    "2"
+   ],
+   "piso": [
+    "OK",
+    "2"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O13",
+   "categoria": "classes",
+   "recurso": "__del__ chamado ao apagar",
+   "codigo": "log = []\nclass D:\n    def __del__(self):\n        log.append('del')\nd = D(); del d\nr = log",
+   "cpython": [
+    "OK",
+    "['del']"
+   ],
+   "teto": [
+    "OK",
+    "[]"
+   ],
+   "piso": [
+    "OK",
+    "[]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O14",
+   "categoria": "classes",
+   "recurso": "heranca multipla (MRO em diamante)",
+   "codigo": "class A:\n    def f(self):\n        return 'A'\nclass B(A):\n    pass\nclass C(A):\n    def f(self):\n        return 'C'\nclass D(B, C):\n    pass\nr = D().f()",
+   "cpython": [
+    "OK",
+    "'C'"
+   ],
+   "teto": [
+    "OK",
+    "'A'"
+   ],
+   "piso": [
+    "OK",
+    "'A'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O15",
+   "categoria": "classes",
+   "recurso": "__slots__ restringe atributos?",
+   "codigo": "class A:\n    __slots__ = ('x',)\na = A(); a.y = 1\nr = a.y",
+   "cpython": [
+    "ERRO",
+    "AttributeError: 'A' object has no attribute 'y'"
+   ],
+   "teto": [
+    "OK",
+    "1"
+   ],
+   "piso": [
+    "OK",
+    "1"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O16",
+   "categoria": "classes",
+   "recurso": "name mangling de __x",
+   "codigo": "class A:\n    def __init__(self):\n        self.__x = 1\nr = hasattr(A(), '_A__x')",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "OK",
+    "False"
+   ],
+   "piso": [
+    "OK",
+    "False"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O17",
+   "categoria": "classes",
+   "recurso": "atributo em funcao f.x = 1",
+   "codigo": "def f():\n    pass\nf.x = 1\nr = f.x",
+   "cpython": [
+    "OK",
+    "1"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'function' object has no attribute 'x'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'function' object has no attribute 'x'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O18",
+   "categoria": "classes",
+   "recurso": "__dict__ da instancia",
+   "codigo": "class A:\n    def __init__(self):\n        self.x = 1\nr = A().__dict__",
+   "cpython": [
+    "OK",
+    "{'x': 1}"
+   ],
+   "teto": [
+    "OK",
+    "{'x': 1}"
+   ],
+   "piso": [
+    "OK",
+    "{'x': 1}"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O19",
+   "categoria": "classes",
+   "recurso": "__class__ e __name__",
+   "codigo": "class A:\n    pass\nr = (A().__class__.__name__, A.__name__)",
+   "cpython": [
+    "OK",
+    "('A', 'A')"
+   ],
+   "teto": [
+    "OK",
+    "('A', 'A')"
+   ],
+   "piso": [
+    "OK",
+    "('A', 'A')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O20",
+   "categoria": "classes",
+   "recurso": "__qualname__ e __module__",
+   "codigo": "class A:\n    pass\nr = (getattr(A, '__qualname__', 'ausente'), getattr(A, '__module__', 'ausente'))",
+   "cpython": [
+    "OK",
+    "('A', '__sonda__')"
+   ],
+   "teto": [
+    "OK",
+    "('A', '__sonda__')"
+   ],
+   "piso": [
+    "OK",
+    "('A', '__sonda__')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O21",
+   "categoria": "classes",
+   "recurso": "subclasse de int",
+   "codigo": "class I(int):\n    pass\nr = I(5) + 1",
+   "cpython": [
+    "OK",
+    "6"
+   ],
+   "teto": [
+    "OK",
+    "6"
+   ],
+   "piso": [
+    "OK",
+    "6"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O22",
+   "categoria": "classes",
+   "recurso": "subclasse de list com metodo",
+   "codigo": "class L(list):\n    def soma(self):\n        return sum(self)\nr = L([1, 2, 3]).soma()",
+   "cpython": [
+    "OK",
+    "6"
+   ],
+   "teto": [
+    "OK",
+    "6"
+   ],
+   "piso": [
+    "OK",
+    "6"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O23",
+   "categoria": "classes",
+   "recurso": "__init_subclass__",
+   "codigo": "class A:\n    reg = []\n    def __init_subclass__(cls):\n        A.reg.append(cls.__name__)\nclass B(A):\n    pass\nr = A.reg",
+   "cpython": [
+    "OK",
+    "['B']"
+   ],
+   "teto": [
+    "OK",
+    "[]"
+   ],
+   "piso": [
+    "OK",
+    "[]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "O24",
+   "categoria": "classes",
+   "recurso": "__neg__ __abs__ __mul__ __truediv__",
+   "codigo": "class V:\n    def __init__(self, v):\n        self.v = v\n    def __neg__(self):\n        return V(-self.v)\n    def __abs__(self):\n        return 'abs'\n    def __mul__(self, k):\n        return V(self.v * k)\n    def __truediv__(self, k):\n        return V(self.v / k)\nr = ((-V(2)).v, abs(V(1)), (V(2) * 3).v, (V(3) / 2).v)",
+   "cpython": [
+    "OK",
+    "(-2, 'abs', 6, 1.5)"
+   ],
+   "teto": [
+    "OK",
+    "(-2, 'abs', 6, 1.5)"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: unsupported type for : 'V'"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "O25",
+   "categoria": "classes",
+   "recurso": "__getitem__ com fatia",
+   "codigo": "class S:\n    def __getitem__(self, i):\n        return i\nx = S()[1:3]\nr = (type(x).__name__, x.start, x.stop)",
+   "cpython": [
+    "OK",
+    "('slice', 1, 3)"
+   ],
+   "teto": [
+    "OK",
+    "('slice', 1, 3)"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'slice' object has no attribute 'start'"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "O26",
+   "categoria": "classes",
+   "recurso": "__hash__ proprio em dict",
+   "codigo": "class K:\n    def __init__(self, v):\n        self.v = v\n    def __hash__(self):\n        return self.v\n    def __eq__(self, o):\n        return self.v == o.v\nr = {K(1): 'a'}[K(1)]",
+   "cpython": [
+    "OK",
+    "'a'"
+   ],
+   "teto": [
+    "OK",
+    "'a'"
+   ],
+   "piso": [
+    "OK",
+    "'a'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "O27",
+   "categoria": "classes",
+   "recurso": "descritor __get__",
+   "codigo": "class D:\n    def __get__(self, obj, tipo):\n        return 'desc'\nclass A:\n    x = D()\nr = A().x",
+   "cpython": [
+    "OK",
+    "'desc'"
+   ],
+   "teto": [
+    "OK",
+    "'desc'"
+   ],
+   "piso": [
+    "OK",
+    "<D object>"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "O28",
+   "categoria": "classes",
+   "recurso": "variavel de classe x de instancia",
+   "codigo": "class A:\n    l = []\na, b = A(), A()\na.l.append(1)\nr = b.l",
+   "cpython": [
+    "OK",
+    "[1]"
+   ],
+   "teto": [
+    "OK",
+    "[1]"
+   ],
+   "piso": [
+    "OK",
+    "[1]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E01",
+   "categoria": "excecoes",
+   "recurso": "repr de excecao com argumento",
+   "codigo": "r = repr(ValueError('x'))",
+   "cpython": [
+    "OK",
+    "\"ValueError('x')\""
+   ],
+   "teto": [
+    "OK",
+    "\"ValueError('x',)\""
+   ],
+   "piso": [
+    "OK",
+    "\"ValueError('x',)\""
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E02",
+   "categoria": "excecoes",
+   "recurso": "str(KeyError(\"k\"))",
+   "codigo": "r = str(KeyError('k'))",
+   "cpython": [
+    "OK",
+    "\"'k'\""
+   ],
+   "teto": [
+    "OK",
+    "'k'"
+   ],
+   "piso": [
+    "OK",
+    "'k'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E03",
+   "categoria": "excecoes",
+   "recurso": "excecao propria com atributos",
+   "codigo": "class Erro(Exception):\n    def __init__(self, cod):\n        super().__init__('codigo %d' % cod)\n        self.cod = cod\ntry:\n    raise Erro(7)\nexcept Erro as e:\n    r = (e.cod, str(e), e.args)",
+   "cpython": [
+    "OK",
+    "(7, 'codigo 7', ('codigo 7',))"
+   ],
+   "teto": [
+    "OK",
+    "(7, 'codigo 7', ('codigo 7',))"
+   ],
+   "piso": [
+    "OK",
+    "(7, 'codigo 7', ('codigo 7',))"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E04",
+   "categoria": "excecoes",
+   "recurso": "e.__traceback__",
+   "codigo": "try:\n    1 / 0\nexcept Exception as e:\n    r = hasattr(e, '__traceback__')",
+   "cpython": [
+    "OK",
+    "True"
+   ],
+   "teto": [
+    "OK",
+    "False"
+   ],
+   "piso": [
+    "OK",
+    "False"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E05",
+   "categoria": "excecoes",
+   "recurso": "RecursionError existe",
+   "codigo": "r = RecursionError.__name__",
+   "cpython": [
+    "OK",
+    "'RecursionError'"
+   ],
+   "teto": [
+    "ERRO",
+    "NameError: name 'RecursionError' is not defined"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'RecursionError' is not defined"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E06",
+   "categoria": "excecoes",
+   "recurso": "tipo e mensagem ao estourar recursao",
+   "codigo": "def f(n):\n    return f(n + 1)\ntry:\n    f(0)\nexcept Exception as e:\n    r = (type(e).__name__, str(e))",
+   "cpython": [
+    "OK",
+    "('RecursionError', 'maximum recursion depth exceeded')"
+   ],
+   "teto": [
+    "OK",
+    "('RuntimeError', 'maximum recursion depth exceeded')"
+   ],
+   "piso": [
+    "OK",
+    "('RuntimeError', 'maximum recursion depth exceeded')"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E07",
+   "categoria": "excecoes",
+   "recurso": "SystemExit e BaseException",
+   "codigo": "r = (issubclass(SystemExit, BaseException), issubclass(SystemExit, Exception))",
+   "cpython": [
+    "OK",
+    "(True, False)"
+   ],
+   "teto": [
+    "OK",
+    "(True, False)"
+   ],
+   "piso": [
+    "OK",
+    "(True, False)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E08",
+   "categoria": "excecoes",
+   "recurso": "KeyboardInterrupt fora de Exception",
+   "codigo": "r = issubclass(KeyboardInterrupt, Exception)",
+   "cpython": [
+    "OK",
+    "False"
+   ],
+   "teto": [
+    "OK",
+    "False"
+   ],
+   "piso": [
+    "OK",
+    "False"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E09",
+   "categoria": "excecoes",
+   "recurso": "mensagem NameError",
+   "codigo": "nao_definida",
+   "cpython": [
+    "ERRO",
+    "NameError: name 'nao_definida' is not defined"
+   ],
+   "teto": [
+    "ERRO",
+    "NameError: name 'nao_definida' is not defined"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: name 'nao_definida' is not defined"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E10",
+   "categoria": "excecoes",
+   "recurso": "mensagem TypeError 'a' + 1",
+   "codigo": "r = 'a' + 1",
+   "cpython": [
+    "ERRO",
+    "TypeError: can only concatenate str (not \"int\") to str"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: can't convert 'int' object to str implicitly"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: can't convert 'int' object to str implicitly"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E11",
+   "categoria": "excecoes",
+   "recurso": "mensagem AttributeError",
+   "codigo": "r = (1).xyz",
+   "cpython": [
+    "ERRO",
+    "AttributeError: 'int' object has no attribute 'xyz'"
+   ],
+   "teto": [
+    "ERRO",
+    "AttributeError: 'int' object has no attribute 'xyz'"
+   ],
+   "piso": [
+    "ERRO",
+    "AttributeError: 'int' object has no attribute 'xyz'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E12",
+   "categoria": "excecoes",
+   "recurso": "mensagem IndexError",
+   "codigo": "r = [][0]",
+   "cpython": [
+    "ERRO",
+    "IndexError: list index out of range"
+   ],
+   "teto": [
+    "ERRO",
+    "IndexError: list index out of range"
+   ],
+   "piso": [
+    "ERRO",
+    "IndexError: list index out of range"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E13",
+   "categoria": "excecoes",
+   "recurso": "mensagem KeyError",
+   "codigo": "r = {}['k']",
+   "cpython": [
+    "ERRO",
+    "KeyError: 'k'"
+   ],
+   "teto": [
+    "ERRO",
+    "KeyError: k"
+   ],
+   "piso": [
+    "ERRO",
+    "KeyError: k"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E14",
+   "categoria": "excecoes",
+   "recurso": "mensagem ValueError int(\"x\")",
+   "codigo": "r = int('x')",
+   "cpython": [
+    "ERRO",
+    "ValueError: invalid literal for int() with base 10: 'x'"
+   ],
+   "teto": [
+    "ERRO",
+    "ValueError: invalid syntax for integer with base 10: 'x'"
+   ],
+   "piso": [
+    "ERRO",
+    "ValueError: invalid syntax for integer with base 10"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "E15",
+   "categoria": "excecoes",
+   "recurso": "mensagem ImportError",
+   "codigo": "import modulo_que_nao_existe",
+   "cpython": [
+    "ERRO",
+    "ModuleNotFoundError: No module named 'modulo_que_nao_existe'"
+   ],
+   "teto": [
+    "ERRO",
+    "ImportError: no module named 'modulo_que_nao_existe'"
+   ],
+   "piso": [
+    "ERRO",
+    "ImportError: no module named 'modulo_que_nao_existe'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E16",
+   "categoria": "excecoes",
+   "recurso": "mensagem de argumentos errados",
+   "codigo": "def f(a):\n    pass\nf()",
+   "cpython": [
+    "ERRO",
+    "TypeError: f() missing 1 required positional argument: 'a'"
+   ],
+   "teto": [
+    "ERRO",
+    "TypeError: f() takes 1 positional arguments but 0 were given"
+   ],
+   "piso": [
+    "ERRO",
+    "TypeError: function takes 1 positional arguments but 0 were given"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "E17",
+   "categoria": "excecoes",
+   "recurso": "UnboundLocalError",
+   "codigo": "x = 1\ndef f():\n    x += 1\nf()",
+   "cpython": [
+    "ERRO",
+    "UnboundLocalError: cannot access local variable 'x' where it is not associated with a value"
+   ],
+   "teto": [
+    "ERRO",
+    "NameError: local variable referenced before assignment"
+   ],
+   "piso": [
+    "ERRO",
+    "NameError: local variable referenced before assignment"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E18",
+   "categoria": "excecoes",
+   "recurso": "SyntaxError via exec",
+   "codigo": "exec('x = ')",
+   "cpython": [
+    "ERRO",
+    "SyntaxError: invalid syntax (<string>, line 1)"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E19",
+   "categoria": "excecoes",
+   "recurso": "IndentationError via exec",
+   "codigo": "exec('if 1:\\nx = 1')",
+   "cpython": [
+    "ERRO",
+    "IndentationError: expected an indented block after 'if' statement on line 1 (<string>, line 2)"
+   ],
+   "teto": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "piso": [
+    "ERRO",
+    "SyntaxError: invalid syntax"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E20",
+   "categoria": "excecoes",
+   "recurso": "finally roda no return",
+   "codigo": "log = []\ndef f():\n    try:\n        return 'ret'\n    finally:\n        log.append('fin')\nr = (f(), log)",
+   "cpython": [
+    "OK",
+    "('ret', ['fin'])"
+   ],
+   "teto": [
+    "OK",
+    "('ret', ['fin'])"
+   ],
+   "piso": [
+    "OK",
+    "('ret', ['fin'])"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E21",
+   "categoria": "excecoes",
+   "recurso": "except (A, B) as e",
+   "codigo": "try:\n    [][1]\nexcept (KeyError, IndexError) as e:\n    r = type(e).__name__",
+   "cpython": [
+    "OK",
+    "'IndexError'"
+   ],
+   "teto": [
+    "OK",
+    "'IndexError'"
+   ],
+   "piso": [
+    "OK",
+    "'IndexError'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E22",
+   "categoria": "excecoes",
+   "recurso": "excecoes embutidas presentes",
+   "codigo": "nomes = ['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'EOFError', 'Exception',\n 'GeneratorExit', 'ImportError', 'IndentationError', 'IndexError', 'KeyError', 'KeyboardInterrupt', 'LookupError',\n 'MemoryError', 'NameError', 'NotImplementedError', 'OSError', 'OverflowError', 'RuntimeError', 'StopIteration',\n 'SyntaxError', 'SystemExit', 'TypeError', 'UnboundLocalError', 'ValueError', 'ZeroDivisionError',\n 'FileNotFoundError', 'RecursionError', 'TimeoutError', 'UnicodeError', 'ModuleNotFoundError', 'StopAsyncIteration',\n 'Warning', 'UserWarning', 'IOError', 'EnvironmentError', 'PermissionError', 'FloatingPointError', 'ReferenceError']\nr = [n for n in nomes if n not in dir(__import__('builtins'))]",
+   "cpython": [
+    "OK",
+    "[]"
+   ],
+   "teto": [
+    "OK",
+    "['UnboundLocalError', 'FileNotFoundError', 'RecursionError', 'TimeoutError', 'ModuleNotFoundError', 'Warning', 'UserWarning', 'IOError', 'EnvironmentError', 'PermissionError', 'FloatingPointError', 'ReferenceError']"
+   ],
+   "piso": [
+    "OK",
+    "['UnboundLocalError', 'FileNotFoundError', 'RecursionError', 'TimeoutError', 'UnicodeError', 'ModuleNotFoundError', 'Warning', 'UserWarning', 'IOError', 'EnvironmentError', 'PermissionError', 'FloatingPointError', 'ReferenceError']"
+   ],
+   "classe": "config"
+  },
+  {
+   "id": "E23",
+   "categoria": "excecoes",
+   "recurso": "excecao dentro de except (contexto)",
+   "codigo": "try:\n    try:\n        1 / 0\n    except ZeroDivisionError:\n        [][0]\nexcept IndexError as e:\n    r = getattr(e, '__context__', 'sem __context__')",
+   "cpython": [
+    "OK",
+    "ZeroDivisionError('division by zero')"
+   ],
+   "teto": [
+    "OK",
+    "'sem __context__'"
+   ],
+   "piso": [
+    "OK",
+    "'sem __context__'"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "E24",
+   "categoria": "excecoes",
+   "recurso": "str() de excecao sem argumentos",
+   "codigo": "r = (str(ValueError()), repr(ValueError()))",
+   "cpython": [
+    "OK",
+    "('', 'ValueError()')"
+   ],
+   "teto": [
+    "OK",
+    "('', 'ValueError()')"
+   ],
+   "piso": [
+    "OK",
+    "('', 'ValueError()')"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "E25",
+   "categoria": "excecoes",
+   "recurso": "mensagem OverflowError int grande em float",
+   "codigo": "r = float(2 ** 2000)",
+   "cpython": [
+    "ERRO",
+    "OverflowError: int too large to convert to float"
+   ],
+   "teto": [
+    "OK",
+    "inf"
+   ],
+   "piso": [
+    "OK",
+    "inf"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "G01",
+   "categoria": "geradores",
+   "recurso": "gerador send",
+   "codigo": "def g():\n    x = yield 1\n    yield x * 2\nit = g(); next(it)\nr = it.send(21)",
+   "cpython": [
+    "OK",
+    "42"
+   ],
+   "teto": [
+    "OK",
+    "42"
+   ],
+   "piso": [
+    "OK",
+    "42"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "G02",
+   "categoria": "geradores",
+   "recurso": "gerador close e throw",
+   "codigo": "def g():\n    try:\n        yield 1\n    except ValueError:\n        yield 'capturou'\nit = g(); next(it)\nr = it.throw(ValueError)\nit.close()",
+   "cpython": [
+    "OK",
+    "'capturou'"
+   ],
+   "teto": [
+    "OK",
+    "'capturou'"
+   ],
+   "piso": [
+    "OK",
+    "'capturou'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "G03",
+   "categoria": "geradores",
+   "recurso": "return em gerador (StopIteration.value)",
+   "codigo": "def g():\n    yield 1\n    return 'fim'\nit = g(); next(it)\ntry:\n    next(it)\nexcept StopIteration as e:\n    r = e.value",
+   "cpython": [
+    "OK",
+    "'fim'"
+   ],
+   "teto": [
+    "OK",
+    "'fim'"
+   ],
+   "piso": [
+    "OK",
+    "'fim'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "G04",
+   "categoria": "geradores",
+   "recurso": "protocolo de iterador proprio",
+   "codigo": "class C:\n    def __init__(self):\n        self.i = 0\n    def __iter__(self):\n        return self\n    def __next__(self):\n        self.i += 1\n        if self.i > 3:\n            raise StopIteration\n        return self.i\nr = list(C())",
+   "cpython": [
+    "OK",
+    "[1, 2, 3]"
+   ],
+   "teto": [
+    "OK",
+    "[1, 2, 3]"
+   ],
+   "piso": [
+    "OK",
+    "[1, 2, 3]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "G05",
+   "categoria": "geradores",
+   "recurso": "zip(*matriz) transposicao",
+   "codigo": "r = list(zip(*[[1, 2], [3, 4]]))",
+   "cpython": [
+    "OK",
+    "[(1, 3), (2, 4)]"
+   ],
+   "teto": [
+    "OK",
+    "[(1, 3), (2, 4)]"
+   ],
+   "piso": [
+    "OK",
+    "[(1, 3), (2, 4)]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "G06",
+   "categoria": "geradores",
+   "recurso": "expressao geradora em max/sum",
+   "codigo": "r = (max(x * x for x in range(5)), sum(x for x in range(5) if x % 2))",
+   "cpython": [
+    "OK",
+    "(16, 4)"
+   ],
+   "teto": [
+    "OK",
+    "(16, 4)"
+   ],
+   "piso": [
+    "OK",
+    "(16, 4)"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "G07",
+   "categoria": "geradores",
+   "recurso": "StopIteration dentro de gerador (PEP 479)",
+   "codigo": "def g():\n    yield 1\n    next(iter([]))\n    yield 2\nr = list(g())",
+   "cpython": [
+    "ERRO",
+    "RuntimeError: generator raised StopIteration"
+   ],
+   "teto": [
+    "OK",
+    "[1]"
+   ],
+   "piso": [
+    "OK",
+    "[1]"
+   ],
+   "classe": "nucleo"
+  },
+  {
+   "id": "V01",
+   "categoria": "escopo",
+   "recurso": "lambda em laco (late binding)",
+   "codigo": "fs = [lambda: i for i in range(3)]; r = [f() for f in fs]",
+   "cpython": [
+    "OK",
+    "[2, 2, 2]"
+   ],
+   "teto": [
+    "OK",
+    "[2, 2, 2]"
+   ],
+   "piso": [
+    "OK",
+    "[2, 2, 2]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "V02",
+   "categoria": "escopo",
+   "recurso": "argumento padrao mutavel",
+   "codigo": "def f(x, l=[]):\n    l.append(x)\n    return l\nf(1)\nr = f(2)",
+   "cpython": [
+    "OK",
+    "[1, 2]"
+   ],
+   "teto": [
+    "OK",
+    "[1, 2]"
+   ],
+   "piso": [
+    "OK",
+    "[1, 2]"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "V03",
+   "categoria": "escopo",
+   "recurso": "__name__ no namespace do exec",
+   "codigo": "r = __name__",
+   "cpython": [
+    "OK",
+    "'__sonda__'"
+   ],
+   "teto": [
+    "OK",
+    "'__sonda__'"
+   ],
+   "piso": [
+    "OK",
+    "'__sonda__'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "V04",
+   "categoria": "escopo",
+   "recurso": "variavel de compreensao nao vaza",
+   "codigo": "k = 'fora'\nl = [k for k in range(3)]\nr = k",
+   "cpython": [
+    "OK",
+    "'fora'"
+   ],
+   "teto": [
+    "OK",
+    "'fora'"
+   ],
+   "piso": [
+    "OK",
+    "'fora'"
+   ],
+   "classe": "igual"
+  },
+  {
+   "id": "V05",
+   "categoria": "escopo",
+   "recurso": "del de variavel e reuso",
+   "codigo": "a = 1; del a; a = 2; r = a",
+   "cpython": [
+    "OK",
+    "2"
+   ],
+   "teto": [
+    "OK",
+    "2"
+   ],
+   "piso": [
+    "OK",
+    "2"
+   ],
+   "classe": "igual"
+  }
+ ]
+}

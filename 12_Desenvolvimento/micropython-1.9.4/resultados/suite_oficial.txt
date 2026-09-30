@@ -1,0 +1,31 @@
+Suíte oficial de testes do MicroPython 1.9.4 (tests/run-tests -d basics float micropython misc)
+Binário: bin/mpy194-teto (32 bits, double estrito). Referência de saída: CPython 3.11.15.
+
+FAIL  basics/dict1.py
+FAIL  basics/exception1.py
+FAIL  basics/gen_yield_from.py
+FAIL  basics/gen_yield_from_close.py
+FAIL  basics/gen_yield_from_throw.py
+FAIL  basics/generator_close.py
+FAIL  basics/generator_return.py
+FAIL  basics/int_big_error.py
+FAIL  basics/parser.py
+FAIL  basics/set_pop.py
+FAIL  basics/string_format_error.py
+FAIL  basics/subclass_native3.py
+FAIL  basics/try_as_var.py
+FAIL  misc/sys_exc_info.py
+508 tests performed (16033 individual testcases)
+494 tests passed
+28 tests skipped: builtin_help builtin_range_binop class_delattr_setattr namedtuple_asdict sys_getsizeof native_closure native_const_intbig native_misc schedule viper_addr viper_args viper_binop_arith viper_binop_comp viper_binop_comp_imm viper_binop_divmod viper_binop_multi_comp viper_cond viper_error viper_import viper_misc viper_misc_intbig viper_ptr16_load viper_ptr16_store viper_ptr32_load viper_ptr32_store viper_ptr8_load viper_ptr8_store viper_subscr
+14 tests failed: dict1 exception1 gen_yield_from gen_yield_from_close gen_yield_from_throw generator_close generator_return int_big_error parser set_pop string_format_error subclass_native3 try_as_var sys_exc_info
+
+As 14 falhas comparam a saída do 1.9.4 com a do CPython 3.11, que mudou desde o 3.4/3.5
+(conferido com diff de cada caso):
+- repr de exceção com vírgula final, ValueError('x',): dict1, exception1, try_as_var,
+  generator_return, subclass_native3, sys_exc_info;
+- PEP 479 e fechamento de geradores (CPython 3.7+): gen_yield_from, gen_yield_from_close,
+  gen_yield_from_throw, generator_close;
+- ordem de iteração de set: set_pop;
+- casos-limite em que um lado levanta erro e o outro não: parser (compile de "\\\n"),
+  string_format_error (ValueError só no 1.9.4), int_big_error (OverflowError só no 1.9.4).
